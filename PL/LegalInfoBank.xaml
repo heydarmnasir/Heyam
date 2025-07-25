@@ -1,0 +1,274 @@
+﻿<Window x:Class="Heyam.LegalInfoBank"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:local="clr-namespace:Heyam"
+        mc:Ignorable="d"
+        Title="بانک اطلاعات حقوقی" Height="700" Width="1250" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FlowDirection="RightToLeft"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="#F4F4F4"           
+        >
+    <Window.Resources>
+        <local:NotesToBackgroundConverter x:Key="NotesToBackgroundConverter"/>
+    </Window.Resources>
+
+    <Border x:Name="border" BorderBrush="#2A2929" BorderThickness="5" CornerRadius="5">
+        <Grid x:Name="MainGrid">
+            <!-- تعریف ستون‌ها و ردیف‌های اصلی -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <!-- ستون برای منوی کناری -->
+                <ColumnDefinition Width="*"/>
+                <!-- ستون برای محتوای اصلی -->
+            </Grid.ColumnDefinitions>
+
+            <!-- منوی کناری -->
+            <StackPanel Grid.Column="0" Background="#2C3E50">
+                <TextBlock Text="بانک اطلاعات حقوقی" Foreground="White" FontSize="20" FontWeight="Bold" 
+                       HorizontalAlignment="Center" Margin="10"/>
+                <Separator Background="White" Height="1" Margin="10"/>
+                <Button x:Name="LawsBTN" Content="🏛 قوانین" Style="{StaticResource MenuButtonStyle}" Click="LawsBTN_Click"/>
+                <Button x:Name="LawsFilesBTN" Content="📃 فایل ها (قانون)" Style="{StaticResource MenuButtonStyle}" Click="LawsFilesBTN_Click"/>
+                <Button x:Name="ApprovalsListBTN" Content="⚖ لیست مصوبات 🔻" Style="{StaticResource MenuButtonStyle}" Click="ApprovalsListBTN_Click"/>
+                <!-- لیست کشویی -->
+                <Border x:Name="DropdownApprovalsListMenu" Background="#2C3E50" BorderBrush="#2C3E50" BorderThickness="1" CornerRadius="5" Width="200" Height="0" ClipToBounds="True" RenderTransformOrigin="0.5,0">
+                    <StackPanel>
+                        <TextBlock x:Name="AraVahdatRaveyeText" Text="- آراء وحدت رویه" Style="{StaticResource TextBlockStyle}" FontSize="13" MouseLeftButtonDown="AraVahdatRaveyeText_MouseLeftButtonDown"/>
+                        <TextBlock x:Name="BakhshnamehaText" Text="- بخشنامه ها" Style="{StaticResource TextBlockStyle}" FontSize="13" MouseLeftButtonDown="BakhshnamehaText_MouseLeftButtonDown"/>
+                        <TextBlock x:Name="RaveyeGhazaeeText" Text="- رویه قضایی" Style="{StaticResource TextBlockStyle}" FontSize="13" MouseLeftButtonDown="RaveyeGhazaeeText_MouseLeftButtonDown"/>
+                        <TextBlock x:Name="TarhLayeheText" Text="- طرح و لایحه" Style="{StaticResource TextBlockStyle}" FontSize="13" MouseLeftButtonDown="TarhLayeheText_MouseLeftButtonDown"/>
+                        <TextBlock x:Name="RaayEsrariText" Text="- رای اصراری" Style="{StaticResource TextBlockStyle}" FontSize="13" MouseLeftButtonDown="RaayEsrariText_MouseLeftButtonDown"/>
+                        <TextBlock x:Name="AraDivanEdalatAdariText" Text="- آراء دیوان عدالت اداری" Style="{StaticResource TextBlockStyle}" FontSize="13" MouseLeftButtonDown="AraDivanEdalatAdariText_MouseLeftButtonDown"/>
+                    </StackPanel>
+                </Border>
+                <Button x:Name="ArticlesBTN" Content="📚 مقالات حقوقی" Style="{StaticResource MenuButtonStyle}" Click="ArticlesBTN_Click"/>
+                <StackPanel HorizontalAlignment="Center">
+                    <Button x:Name="RelatedJobsBTN" Content="♻ اطلاعات مشاغل مرتبط 🔻" Style="{StaticResource MenuButtonStyle}" Click="RelatedJobsBTN_Click"/>
+                    <!-- لیست کشویی -->
+                    <Border x:Name="DropdownRelatedJobsMenu" Background="#2C3E50" BorderBrush="#2C3E50" BorderThickness="1" CornerRadius="5" Width="200" Height="0" ClipToBounds="True" RenderTransformOrigin="0.5,0">
+                        <StackPanel>
+                            <TextBlock x:Name="OfficialExpertsText" Text="- لیست کارشناسان رسمی دادگستری" Style="{StaticResource TextBlockStyle}" FontSize="13" MouseLeftButtonDown="OfficialExpertsText_MouseLeftButtonDown"/>
+                            <TextBlock x:Name="DocumentRegistrationOfficesText" Text="- دفاتر خدمات قضایی" Style="{StaticResource TextBlockStyle}" FontSize="13" MouseLeftButtonDown="DocumentRegistrationOfficesText_MouseLeftButtonDown"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <Image Height="134" Width="148" Margin="0 150 0 0" Source="Resources/Images/attorney.png"/>
+                <TextBlock Text="نرم افزار حقوقی هــــیام" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- بخش اصلی نمایش اطلاعات -->
+            <Grid x:Name="ContentGrid" Grid.Column="1" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- محتوای اصلی -->
+                <Grid x:Name="DashboardGrid" Visibility="Visible" Margin="210,19,10,10">
+                    <Border Background="#2C3E50" Padding="20" Margin="-210,-29,-10,89" >
+                        <TextBlock FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,30,0">به داشبورد بانک اطلاعات حقوقی خوش آمدید! <LineBreak/>  از منوی سمت راست آیتم موردنظر را انتخاب کنید</TextBlock>
+                    </Border>
+                </Grid>
+               
+                <Grid x:Name="LawGrid" Margin="10" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- 🔍 نوار جستجو -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <hc:SearchBar x:Name="LawSearchBar" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" BorderBrush="Gray" BorderThickness="2" Width="280" Margin="5" TextChanged="LawSearchBar_TextChanged"/>
+                        <TextBlock x:Name="LawPlaceholderText"
+                        Text="جستجو براساس عنوان ماده یا متن ماده ..."
+                        Foreground="Gray" FontWeight="Regular"                                         
+                        IsHitTestVisible="False" TextWrapping="Wrap" Width="220" Height="20" Margin="-330 0 0 0"/>
+                        <TextBlock Text="انتخاب قانون:" Height="20"/>
+                        <ComboBox x:Name="SelectLawTypeCB" Cursor="Hand" BorderBrush="Gray" BorderThickness="2" Width="210" Margin="5" SelectionChanged="SelectLawTypeCB_SelectionChanged">
+                            <ComboBoxItem Content="قانون اساسی" IsSelected="True"/>
+                            <ComboBoxItem Content="قانون مدنی"/>
+                            <ComboBoxItem Content="آیین دادرسی مدنی"/>
+                            <ComboBoxItem Content="قانون اجرای احکام مدنی"/>
+                            <ComboBoxItem Content="قانون تجارت"/>
+                            <ComboBoxItem Content="آیین دادرسی کیفری"/>
+                            <ComboBoxItem Content="قانون مجازات اسلامی مصوب 1375"/>
+                            <ComboBoxItem Content="قانون مجازات اسلامی مصوب 1392"/>
+                            <ComboBoxItem Content="قانون کاهش مجازات حبس تعزیری"/>
+                            <ComboBoxItem Content="قانون مبارزه با قاچاق کالا و ارز"/>
+                            <ComboBoxItem Content="قانون مجازات اسید پاشی"/>
+                            <ComboBoxItem Content="قانون حمایت خانواده"/>
+                            <ComboBoxItem Content="قانون جرم سیاسی"/>
+                            <ComboBoxItem Content="قانون دفتر اسناد"/>
+                            <ComboBoxItem Content="قانون کار"/>
+                            <ComboBoxItem Content="قانون بیمه"/>
+                            <ComboBoxItem Content="قانون صدور چک"/>
+                            <ComboBoxItem Content="قانون چک تضمین شده"/>
+                            <ComboBoxItem Content="قانون ثبت احوال"/>
+                            <ComboBoxItem Content="قانون شوراهای حل اختلاف"/>
+                            <ComboBoxItem Content="قانون وکالت"/>
+                            <ComboBoxItem Content="قانون تملک آپارتمان"/>
+                            <ComboBoxItem Content="قانون پیش فروش ساختمان"/>
+                            <ComboBoxItem Content="قانون مؤجر و مستأجر"/>
+                            <ComboBoxItem Content="قانون تصدیق انحصار وراثت"/>
+                            <ComboBoxItem Content="قانون نقل و انتقال قضات"/>
+                            <ComboBoxItem Content="قانون ورود و اقامت اتباع خارجه"/>
+                            <ComboBoxItem Content="قانون اموال غیر منقول اتباع خارجه"/>
+                            <ComboBoxItem Content="قانون الزام به ثبت رسمی معاملات اموال غیر منقول"/>
+                            <ComboBoxItem Content="قانون مجازات انتقال مال غیر"/>
+                            <ComboBoxItem Content="قانون مجازات استفاده غیر مجاز آب، برق و گاز"/>
+                            <ComboBoxItem Content="قانون نظارت بر رفتار قضات"/>
+                            <ComboBoxItem Content="قانون ثبت شرکت"/>
+                            <ComboBoxItem Content="قانون دریایی"/>
+                            <ComboBoxItem Content="قانون صید و شکار"/>
+                            <ComboBoxItem Content="قانون امور گمرکی"/>
+                            <ComboBoxItem Content="قانون صادرات و واردات"/>
+                            <ComboBoxItem Content="اصلاح آیین دادرسی کیفری"/>
+                            <ComboBoxItem Content="اصلاح صدور چک"/>
+                            <ComboBoxItem Content="اصلاح قانون مجازات قاچاق اسلحه"/>
+                            <ComboBoxItem Content="اصلاح قانون نظام صنفی"/>
+                            <ComboBoxItem Content="اصلاح مبارزه با پولشویی"/>
+                            <ComboBoxItem Content="اصلاح ماده 104 قانون مجازات اسلامی"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- محتوای اصلی -->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- 📚 لیست قوانین -->
+                        <Border BorderBrush="DarkGray" BorderThickness="2" Margin="0,0,0,0">
+                            <DockPanel HorizontalAlignment="Left">
+                                <!-- TreeView برای لیست ماده‌ها -->
+                                <TreeView ItemsSource="{Binding FilteredArticles}" SelectedItemChanged="TreeView_SelectedItemChanged" MaxHeight="600">
+                                    <TreeView.ItemTemplate>
+                                        <HierarchicalDataTemplate>
+                                            <TextBlock Text="{Binding Title}" Width="140" Margin="0 0 0 0"/>
+                                        </HierarchicalDataTemplate>
+                                    </TreeView.ItemTemplate>
+                                </TreeView>
+                            </DockPanel>
+                        </Border>
+
+                        <!-- جزئیات ماده -->
+                        <ScrollViewer Grid.Column="1" Margin="0,0,10,0">
+                            <StackPanel Margin="10">
+                                <!-- اطلاعات قانون -->
+                                <Border BorderBrush="LightGray" Background="Azure" BorderThickness="1" Padding="10" CornerRadius="5" Margin="0,0,0,10">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding SelectedLawInfo.Name, StringFormat=📄 نام قانون: {0}}" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding SelectedLawInfo.ApprovalDate, StringFormat=📅 تاریخ تصویب: {0}}"/>
+                                        <TextBlock Text="{Binding SelectedLawInfo.DocumentType, StringFormat=📁 نوع سند: {0}}"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- عنوان ماده -->
+                                <TextBlock x:Name="ArticleTitleTB" Text="{Binding SelectedArticle.Title}" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                                <!-- متن ماده -->
+                                <TextBox x:Name="ArticleContentTB" Text="{Binding SelectedArticle.Text}"
+                                TextWrapping="Wrap" 
+                                IsReadOnly="True"
+                                AcceptsReturn="True"
+                                Height="100"
+                                VerticalContentAlignment="Top"
+                                VerticalScrollBarVisibility="Auto"
+                                BorderThickness="2"
+                                />
+                                <!-- توضیحات اضافه -->
+                                <Expander Header=" 📄 توضیحات اضافه" Margin="0,10,0,0" IsExpanded="False"
+                                    Background="{Binding NotesText, Converter={StaticResource NotesToBackgroundConverter}}">
+                                    <!-- متن ماده -->
+                                    <TextBox x:Name="ExtraArticleContentTB" Text="{Binding SelectedArticle.NotesText, Mode=OneWay}"
+                                        TextWrapping="Wrap" 
+                                        IsReadOnly="True"
+                                        AcceptsReturn="True"
+                                        Height="100"
+                                        VerticalContentAlignment="Top"
+                                        VerticalScrollBarVisibility="Auto"
+                                        />
+                                </Expander>
+
+                                <!-- یادداشت شخصی -->
+                                <Expander Header="✏️ یادداشت شخصی" Margin="0,10,0,0" IsExpanded="False"
+                                          Background="{Binding UserNotesText, Converter={StaticResource NotesToBackgroundConverter}}">
+                                    <StackPanel>
+                                        <TextBox x:Name="UserNotesTB" Text="{Binding SelectedArticle.UserNotesText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" Height="60" TextWrapping="Wrap" AcceptsReturn="True"/>
+                                        <Button x:Name="SavePersonalNotesBTN" Cursor="Hand" Content="ذخیره یادداشت" Background="Gold" FontWeight="Bold" Width="120" Margin="0,5,0,0" Click="SavePersonalNotesBTN_Click"/>
+                                    </StackPanel>
+                                </Expander>
+
+                                <!-- قوانین مرتبط -->
+                                <Expander Header="🔗 آیین نامه ها و لوایح مرتبط" Margin="0,10,0,0" IsExpanded="False">
+                                    <ListBox x:Name="AenLettersLB"/>
+                                </Expander>
+
+                                <!-- نظریه مشورتی -->
+                                <Expander Header="📑 نظریه های مشورتی" Margin="0,10,0,0" IsExpanded="False">
+                                    <TextBlock x:Name="AllNazareyatMashverati_Link" Cursor="Hand" Text="همه نظریات مشورتی قوانین و مصوبات" Foreground="#1259D5" FontWeight="Bold" TextDecorations="Underline" MouseLeftButtonDown="AllNazareyatMashverati_Link_MouseLeftButtonDown" Margin="28,0,0,0"/>
+                                </Expander>
+
+                                <!-- تاریخچه مرور -->
+                                <Expander Header="🕘 تاریخچه مرور" Margin="0,10,0,0" IsExpanded="False">
+                                    <ListBox ItemsSource="{Binding BrowseHistory}"
+                                    DisplayMemberPath="." 
+                                    SelectedItem="{Binding SelectedHistoryItem, Mode=TwoWay}" />
+                                </Expander>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+                <Grid x:Name="LawFilesGrid" Margin="10" Visibility="Collapsed">
+                    <!-- لیست فایل‌های PDF -->
+                    <ListView x:Name="listViewFiles" Grid.Row="1" Background="Azure" ItemsSource="{Binding PdfFiles}" MaxHeight="610">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="📌 نام فایل" Width="450" DisplayMemberBinding="{Binding FileName}" />
+                                <GridViewColumn Header="🔎 مشاهده" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="👁️ نمایش" Cursor="Hand" Height="30" Click="btnViewPdf_Click" Tag="{Binding FilePath}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+                <Grid x:Name="ArticleLawGrid" Margin="10" Visibility="Collapsed">
+                    <!-- لیست مقالات فایل‌های PDF -->
+                    <ListView x:Name="listArticleViewFiles" Grid.Row="1" Background="Azure" ItemsSource="{Binding ArticlePdfFiles}" MaxHeight="610">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="📌 نام فایل" Width="450" DisplayMemberBinding="{Binding FileName}" />
+                                <GridViewColumn Header="🔎 مشاهده" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="👁️ نمایش" Cursor="Hand" Height="30" Click="btnViewArticlePdf_Click" Tag="{Binding FilePath}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Grid>
+            <WrapPanel x:Name="TotalExistFilesWP" Visibility="Collapsed" Margin="30,652,660,13" Grid.Column="1">
+                <TextBlock x:Name="ExistFilesText" HorizontalAlignment="Left" Text="تعداد فایل های موجود:" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FontSize="12" FontWeight="Bold" Width="121" Foreground="Black" TextAlignment="Left" Grid.Column="1"/>
+                <TextBlock x:Name="DynamicCountText" HorizontalAlignment="Left" Text="0" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FontSize="14" FontWeight="Bold" Width="106" Foreground="#1259D5" TextAlignment="Right" FlowDirection="LeftToRight" Grid.Column="1" />
+            </WrapPanel>
+            <Button x:Name="CloseBTN" Background="#1259D5" Foreground="White" Content="برگشت" Width="75" Height="31" Cursor="Hand" Margin="900,655,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CloseBTN_Click" Grid.Column="1"/>
+        </Grid>
+    </Border>
+</Window>

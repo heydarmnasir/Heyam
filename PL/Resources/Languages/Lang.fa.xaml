@@ -1,0 +1,38 @@
+﻿<ResourceDictionary
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <sys:String x:Key="Back">برگشت</sys:String>
+
+    <!--صفحه اصلی-->
+    <sys:String x:Key="LawOfficeText">:دفتر وکالت آقای/خانم</sys:String>
+    <sys:String x:Key="AppTitleText">نرم افزار حقوقی هـــــیام</sys:String>
+    <sys:String x:Key="RegisteredClientsText">موکل های ثبت شده</sys:String>
+    <sys:String x:Key="Current-ClosedCasesText">پرونده های جاری و مختومه</sys:String>
+    <sys:String x:Key="UserInfoText">اطلاعات کاربری</sys:String>
+    <sys:String x:Key="UserNameText">:نام کاربری</sys:String>
+    <sys:String x:Key="TodayRemindersText">:یادآورهای امروز</sys:String>
+         
+    <sys:String x:Key="ClientsManagement">مدیریت موکل ها</sys:String>
+    <sys:String x:Key="CasesManagement">مدیریت پرونده ها</sys:String>
+    <sys:String x:Key="LegalAutomation">اتوماسیون حقوقی</sys:String>
+    <sys:String x:Key="FinancialManagement">مدیریت مالی و حسابداری</sys:String>
+    <sys:String x:Key="LegalInfoBank">بانک اطلاعات حقوقی</sys:String>
+    <sys:String x:Key="ActivitiesReminders">فعالیت ها و یادآورها</sys:String>
+    <sys:String x:Key="SMSPanel">پنل پیامکی</sys:String>
+    <sys:String x:Key="Deactived">(غیر فعال)</sys:String>
+    <sys:String x:Key="Reports">گزارش ها</sys:String>
+    <sys:String x:Key="Settings">تنظیمات</sys:String>
+    
+    <!--صفحه تنظیمات-->
+    <sys:String x:Key="GeneralSettings">تنظیمات عمومی</sys:String>
+    <sys:String x:Key="UsersManagement">مدیریت کاربران</sys:String>
+    <sys:String x:Key="Backup-Restore">پشتیبان گیری داده ها</sys:String>
+    <sys:String x:Key="AboutUs">درباره ما</sys:String>
+    <sys:String x:Key="Screen">صفحه نمایش:</sys:String>
+    <sys:String x:Key="DarkMode">حالت تاریک</sys:String>
+    <sys:String x:Key="ApplicationLanguage">زبان نرم افزار:</sys:String>
+    <sys:String x:Key="Notifications">اعلان ها:</sys:String>
+    <sys:String x:Key="ActivateNotifications">فعال سازی اعلان ها</sys:String>
+</ResourceDictionary>

@@ -1,0 +1,309 @@
+﻿<Window x:Class="Heyam.LegalAutomation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+        xmlns:local="clr-namespace:Heyam"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Title="LegalAutomation" Height="680" Width="1230" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FlowDirection="RightToLeft">
+    <Grid>
+        <Grid x:Name="MainGrid">
+            <!-- نوار کناری (منو) -->
+            <Border Background="#1259D5" CornerRadius="10">
+                <DockPanel Margin="5,10,10,10" Background="#1259D5" Width="200" HorizontalAlignment="Left">
+                    <StackPanel>
+                        <TextBlock Text="⚖️ داشبورد حقوقی" Foreground="White" FontSize="18" FontWeight="Bold" Margin="10" TextAlignment="Center"/>
+                        <Separator/>
+                        <Button x:Name="TanzimContract" Style="{StaticResource MenuButtonStyle}" Content="📜 تنظیم قرارداد" Background="Transparent" Height="40" FontSize="14" Padding="10" BorderThickness="0" Click="TanzimContract_Click"/>
+                        <Button x:Name="TanzimLayehe" Style="{StaticResource MenuButtonStyle}" Content="✍️ تنظیم لایحه" Background="Transparent" Height="40" FontSize="14" Padding="10" BorderThickness="0" Click="TanzimLayehe_Click"/>
+                        <Button x:Name="AdlIran" Content="🌐 سامانه عدل ایران" Background="Transparent" Foreground="White" Cursor="Hand" Height="40" Padding="10" BorderThickness="0" Click="AdlIran_Click"/>
+                        <Button x:Name="TasmimSite" Content="🌐 سامانه تصمیم (نوبت دهی طلاق)" Background="Transparent" Foreground="White" Cursor="Hand" Height="40" Padding="10" BorderThickness="0" Click="TasmimSite_Click"/>
+                        <Button x:Name="ParvandeIjra" Content="🌐 اطلاع رسانی پرونده اجرا" Background="Transparent" Foreground="White" Cursor="Hand" Height="40" Padding="10" BorderThickness="0" Click="ParvandeIjra_Click"/>
+                        <Button x:Name="ArayeGhazaee" Content="🌐 سامانه آرای قضایی" Background="Transparent" Foreground="White" Cursor="Hand" Height="40" Padding="10" BorderThickness="0" Click="ArayeGhazaee_Click" />
+
+                        <Image Height="134" Width="148" Margin="0 110 0 0" Source="Resources/Images/attorney.png"/>
+                        <TextBlock Text="نرم افزار حقوقی هــــیام" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+            <!--Margin="210,114,0,50"-->
+            <Grid x:Name="TanzimContractGrid" Visibility="Collapsed" Background="White" Margin="210,43,0,50">
+                <StackPanel x:Name="RegContractPanel" Margin="5,10,5,5">
+                    <WrapPanel Margin="0 10 0 0">
+                        <TextBlock Text="نام موکل:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 0 5 0"/>
+                        <ComboBox BorderBrush="Gray" Name="SelectClientNameCB" IsEditable="True" Width="175" Margin="0" SelectionChanged="SelectClientNameCB_SelectionChanged"/>
+                        <TextBlock Text="شماره پرونده:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="5 0 5 0"/>
+                        <ComboBox BorderBrush="Gray" Name="SelectCaseNumberCB" IsEditable="True" Width="175" Margin="0" SelectionChanged="SelectCaseNumberCB_SelectionChanged"/>
+                        <TextBlock Text="انتخاب نوع قرارداد:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="5 0 5 0"/>
+                        <ComboBox BorderBrush="Gray" Name="ContractTypeCB" Cursor="Hand" Width="175" Margin="0 0 0 0" SelectionChanged="ContractTypeCB_SelectionChanged">
+                            <ComboBoxItem Content="قرارداد مشاوره"/>
+                            <ComboBoxItem Content="قرارداد وکالت"/>
+                        </ComboBox>
+                        <TextBlock Text="مبلغ:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="5 0 5 0"/>
+                        <TextBox Name="TotalAmountTB" BorderBrush="Gray" Width="150" Margin="0" TextChanged="TotalAmountTB_TextChanged" />
+                        <TextBlock Text="ریال" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="5 0 5 0"/>
+                        <TextBlock Text="تاریخ تنظیم:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="725 15 5 0"/>
+                        <hc:PersianDatePicker Name="SetDateDP" BorderBrush="Gray" Width="150" Margin="0 15 5 0"/>
+                        <TextBlock x:Name="CaseSubjectLabel" Text="" Width="175" FontSize="13" FontWeight="Bold" Foreground="#1259D5" Margin="305 -25 0 0" Height="30"/>
+                    </WrapPanel>
+                    <TextBlock Text="قالب قرارداد:" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                    <TextBox Name="ContractContentTB" IsEnabled="False" AcceptsReturn="True" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" TextAlignment="Justify" TextWrapping="Wrap"
+                    Height="405" Background="#F8F8F8" Margin="0,0,0,-30"/>
+                    <WrapPanel HorizontalAlignment="Center" Margin="-150 45 0 0">
+                        <Button x:Name="ExportContractBTN" Cursor="Hand" Background="#EC4949" Foreground="White"  Width="88" Height="30" Click="ExportContractBTN_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="استخراج" VerticalAlignment="Center" FontSize="11.5" Margin="-2,0,5,0"/>
+                                <Image Source="Resources/Images/PDF.png" Width="23" Height="18"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="ContractSubmitBTN" Cursor="Hand" Background="ForestGreen" Foreground="White" Margin="50 0 0 0" Content="ثبت قرارداد" Width="150" Height="30" Click="ContractSubmitBTN_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    </WrapPanel>
+                    <!-- Preview Area -->
+                    <FlowDocumentScrollViewer Visibility="Collapsed" Grid.Row="1" HorizontalAlignment="Left" x:Name="ContractPreview" Margin="0,74,0,0" />
+                    <FlowDocumentReader Visibility="Collapsed">
+                        <FlowDocument PagePadding="20">
+                            <!-- شبیه‌سازی حاشیه صفحه -->
+                            <BlockUIContainer>
+                                <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10" Padding="20" Margin="10">
+                                    <StackPanel>
+                                        <TextBlock Text="عنوان سند" FontSize="18" FontWeight="Bold" TextAlignment="Center" />
+                                        <TextBlock Text="این یک متن نمونه است که در داخل حاشیه صفحه نمایش داده شده است." TextAlignment="Justify" Margin="0,10,0,0" />
+                                        <TextBlock Text="می‌توانید متن بیشتری اضافه کنید." Margin="0,10,0,0" />
+                                    </StackPanel>
+                                </Border>
+                            </BlockUIContainer>
+                        </FlowDocument>
+                    </FlowDocumentReader>
+                </StackPanel>
+                <!-- جدول اطلاعات قراردادها -->
+                <DataGrid x:Name="ContractsDGV" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeColumns="True" Visibility="Collapsed" Margin="10 10 10 40">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="کاربر" Width="55">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding UserTypeText}" Foreground="{Binding UserTypeColor}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="نام موکل" Binding="{Binding ClientName}" Width="*"/>
+                        <DataGridTextColumn Header="شماره پرونده" Binding="{Binding CaseNumber}" Width="*"/>
+                        <DataGridTemplateColumn Header="نوع قرارداد" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ContractTypeText}" Foreground="{Binding ContractTypeColor}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="مبلغ حق الوکاله" Binding="{Binding TotalAmountFormat}" Width="*"/>
+                        <DataGridTextColumn Header="تاریخ تنظیم" Binding="{Binding SetDateShamsi}" Width="100"/>
+                        <!-- ستون دکمه نمایش جزئیات -->
+                        <DataGridTemplateColumn Header="مشاهده جزئیات" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="ShowContractsDetailsBTN" Content="👁 مشاهده و ویرایش" 
+                                    Tag="{Binding Id}" Cursor="Hand" Click="ShowContractsDetailsBTN_Click" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="ShowContractListBTN" Content="نمایش/پنهان‌سازی لیست قرارداد ها" Height="30" Width="220" Margin="0,548,10,0" Background="#03A9F4" Foreground="White" HorizontalAlignment="Right" Cursor="Hand" Click="ShowContractListBTN_Click" VerticalAlignment="Top"/>
+                <TextBlock x:Name="ContractTypeFilterTextBlock" HorizontalAlignment="Left" Text="فیلتر براساس نوع قرارداد:" Visibility="Collapsed" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FontSize="12" FontWeight="Bold" Width="146" Foreground="DarkBlue" TextAlignment="Right" Margin="-5,557,0,9" FlowDirection="RightToLeft" />
+                <ComboBox x:Name="ContractTypeFilterCB" SelectedValuePath="Tag" Visibility="Collapsed"
+                Margin="148,552,717,7" FlowDirection="RightToLeft" Width="125" SelectionChanged="ContractTypeFilterCB_SelectionChanged">
+                    <ComboBoxItem Content="همه" Tag="" IsSelected="True" />
+                    <ComboBoxItem Content="قرارداد مشاوره" Tag="0" />
+                    <ComboBoxItem Content="قرارداد وکالت" Tag="1"/>
+                </ComboBox>
+                <hc:SearchBar x:Name="SearchContractBox" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,551,350,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" TextChanged="SearchContractBox_TextChanged"/>
+                <TextBlock x:Name="SearchContractPlaceholderText" Visibility="Collapsed"
+                Text="جستجو براساس نام موکل یا شماره پرونده ..."
+                Foreground="Gray" FontWeight="Regular"                                         
+                IsHitTestVisible="False" HorizontalAlignment="Right" Margin="0,553,420,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>
+            </Grid>
+        </Grid>
+
+        <!-- محتوای اصلی -->
+        <Grid x:Name="DashboardGrid" Visibility="Visible" Margin="210,19,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="39*"/>
+                <ColumnDefinition Width="451*"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="White" CornerRadius="5" Padding="20" Margin="0,26,-10,35" Grid.ColumnSpan="2">
+                <TextBlock Text="به داشبورد حقوقی خوش آمدید!" FontSize="16" FontWeight="Bold" Foreground="#34495E"/>
+            </Border>
+        </Grid>
+        <Grid Margin="0,650,10,566">
+            <Border Background="#f1f1f1f1" CornerRadius="5" Margin="209,-13,-10,-30">
+            </Border>
+        </Grid>
+        <!-- پاپ‌آپ و نمایش جزئیات -->
+        <Grid x:Name="ContractDetailsPopup" Visibility="Collapsed"
+            HorizontalAlignment="Center" VerticalAlignment="Top"
+            Height="610"
+            Width="870" Panel.ZIndex="99">
+            <Border Background="White" Padding="15" CornerRadius="10" BorderBrush="Black" BorderThickness="3" Width="850" Height="600">
+                <StackPanel>
+                    <TextBlock Text="📜 متن قرارداد" FontSize="18" FontWeight="Bold" Foreground="DarkBlue" Margin="0,0,0,25"/>
+                    <TextBox Name="PopupContractContentTB" IsReadOnly="True" AcceptsReturn="True" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" TextAlignment="Justify" TextWrapping="Wrap"
+                    Height="440" Background="#F8F8F8" Margin="0,0,0,0" TextChanged="PopupContractContentTB_TextChanged"/>
+                    <TextBlock x:Name="PopupCharCountLabel" Margin="0 0 10 0" Text="0 کاراکتر" Foreground="Gray" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FontSize="12" HorizontalAlignment="Right"/>
+                    <WrapPanel HorizontalAlignment="Center" Margin="-150 45 0 0">
+                        <Button x:Name="PopupExportContractBTN" Cursor="Hand" Background="#EC4949" Foreground="White" Width="140" Height="30" Margin="100 -50 0 0" Click="PopupExportContractBTN_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="استخراج فایل PDF" VerticalAlignment="Center" FontSize="11.5" Margin="-2,0,5,0"/>
+                                <Image Source="Resources/Images/PDF.png" Width="23" Height="18"/>
+                            </StackPanel>
+                        </Button>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Right" Margin="0,11,0,0" Width="100">
+                        <Button x:Name="ContractDetailsPopupCloseBTN" Content="❌ بستن" Background="#1259D5" Foreground="White" Cursor="Hand" Margin="25 -50 0 0" Height="30" Click="ContractDetailsPopupCloseBTN_Click"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Margin="0,0,10,566">
+            <Border Background="#f1f1f1f1" CornerRadius="5" Padding="20" Margin="210,0,-10,73">
+                <TextBlock x:Name="DynamicTopLabel" Text="📄 اطلاعات قرارداد را وارد کنید" Visibility="Collapsed" FontSize="16" FontWeight="Bold" Foreground="#34495E" Margin="0,-10,0,-22"/>
+            </Border>
+        </Grid>
+
+
+        <!--تنظیم لایحه حقوقی-->
+        <Grid x:Name="LegalBriefGrid" Visibility="Collapsed">
+            <Grid x:Name="RegBriefPanel">
+            <WrapPanel Margin="225,0,0,642">
+                <TextBlock Text="موکل:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
+                <ComboBox x:Name="SelectClientForLegalBriefCB" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175" SelectionChanged="SelectClientForLegalBriefCB_SelectionChanged"/>
+            </WrapPanel>
+            <WrapPanel Margin="440,0,0,642">
+                <TextBlock Text="انتخاب پرونده:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
+                <ComboBox x:Name="SelectCaseNumberForLegalBriefCB" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175"/>
+            </WrapPanel>
+
+            <WrapPanel Margin="700,0,0,642">
+                <TextBlock Text="انتخاب لایحه:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
+                <ComboBox x:Name="TemplateCB" DisplayMemberPath="Title" SelectedValue="Id" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175"  SelectionChanged="SelectLayeheCB_SelectionChanged"/>
+            </WrapPanel>
+
+            <WrapPanel Margin="950,0,0,642">
+                <TextBlock Text="تاریخ تنظیم:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
+                <hc:PersianDatePicker x:Name="SetDateDForLegalBriefDP" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175"/>
+            </WrapPanel>
+            </Grid>
+
+            <TextBlock x:Name="ListLayeheDynamicText" Text="🧾 لیست لوایح" Visibility="Collapsed" Foreground="#34495E" FontSize="16" FontWeight="UltraBold" Margin="230 7 0 0"/>
+            <!-- استایل سفارشی چک‌باکس -->
+            <CheckBox x:Name="DeliveryCheckBox"
+            Content="تاریخ ارجاع دارد؟"
+            FontSize="12"
+            FontWeight="Bold"
+            Foreground="#1051E7"
+            Width="166" Height="33" Margin="0,644,200,0"
+            Checked="DeliveryCheckBox_Checked"
+            Unchecked="DeliveryCheckBox_Unchecked">
+                <CheckBox.Style>
+                    <Style TargetType="CheckBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="CheckBox">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!-- دایره چک‌باکس -->
+                                        <Border Width="20" Height="20" Cursor="Hand"
+                             CornerRadius="12"
+                             Background="White" 
+                             BorderBrush="#4A90E2" 
+                             BorderThickness="2">
+                                            <Ellipse Fill="#4A90E2"
+                                 Width="12"
+                                 Height="12"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Visibility="Collapsed"
+                                 x:Name="CheckMark"/>
+                                        </Border>
+                                        <!-- متن چک‌باکس -->
+                                        <ContentPresenter Margin="10,0,0,0"
+                                    VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <ControlTemplate.Triggers>
+                                        <!-- حالت انتخاب -->
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </CheckBox.Style>
+            </CheckBox>
+            <hc:PersianDatePicker x:Name="DeliveryDateDP" IsEnabled="False" Margin="546,644,450,5"/>
+
+            <Button x:Name="ShowLegalBriefsListBTN" Content="نمایش/پنهان‌سازی لیست لایحه ها" Height="30" Width="200" Margin="0,0,120,6" Background="#03A9F4" Foreground="White" HorizontalAlignment="Right" Cursor="Hand" Click="ShowLegalBriefsListBTN_Click" VerticalAlignment="Bottom"/>
+            <hc:SearchBar x:Name="SearchLegalBriefBox" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,0,350,8" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="280" TextChanged="SearchLegalBriefBox_TextChanged"/>
+            <TextBlock x:Name="SearchLegalBriefPlaceholderText" Visibility="Collapsed"
+            Text="جستجو براساس نام موکل یا عنوان لایحه ..."
+            Foreground="Gray" FontWeight="Regular"                                         
+            IsHitTestVisible="False" HorizontalAlignment="Right" Margin="0,0,402,11" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="218"/>
+            <dxre:RichEditControl x:Name="RichEditBox" VerticalContentAlignment="Top" FlowDirection="LeftToRight" CommandBarStyle="Ribbon" Margin="210,43,0,41"/>
+            <Button x:Name="LegalBriefSubmitBTN" Content="ثبت لایحه حقوقی" Cursor="Hand" BorderBrush="DarkGreen" Background="ForestGreen" Foreground="White" Margin="261,644,0,0" Width="135" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Click="LegalBriefSubmitBTN_Click"/>
+
+            <!-- جدول اطلاعات لایحه ها -->
+            <DataGrid x:Name="LegalBriefDGV" AutoGenerateColumns="False" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" CanUserResizeColumns="True" Visibility="Collapsed" Margin="210,43,0,41">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="کاربر" Width="55">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding UserTypeText}" Foreground="{Binding UserTypeColor}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="نام موکل" Binding="{Binding ClientName}" Width="140"/>
+                    <DataGridTextColumn Header="شماره پرونده" Binding="{Binding CaseNumber}" Width="150"/>
+                    <DataGridTemplateColumn Header="عنوان لایحه" Width="250">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding LegalBriefTitleText}" Foreground="{Binding LegalBriefTitleColor}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="تاریخ تنظیم" Binding="{Binding SetDate}" Width="*"/>
+                    <DataGridTextColumn Header="یادآوری دارد؟" Binding="{Binding IsDeliverySet}" Width="90"/>
+                    <DataGridTextColumn Header="تاریخ ارجاع" Binding="{Binding DeliveryDate}" Width="*"/>
+                    <DataGridTemplateColumn Header="متن لایحه" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="ShowLegalBriefContentBTN" Cursor="Hand" Tag="{Binding Id}" Content="👁 مشاهده" Click="ShowLegalBriefContentBTN_Click" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Button x:Name="CloseBTN" Background="#1259D5" Foreground="White" Content="برگشت" Width="76" Height="30" Cursor="Hand" Margin="1138,644,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CloseBTN_Click"/>
+        <!-- پاپ‌آپ و نمایش جزئیات -->
+        <Grid x:Name="LegalBriefDetailsPopup" Visibility="Collapsed"
+            HorizontalAlignment="Center" VerticalAlignment="Top"
+            Height="610"
+            Width="950" Panel.ZIndex="99">
+            <Border Background="White" Padding="15" CornerRadius="10" BorderBrush="Black" BorderThickness="3" Width="930" Height="600">
+                <StackPanel>
+                    <TextBlock Text="📜 متن لایحه" FontSize="18" FontWeight="Bold" Foreground="DarkBlue" Margin="0,0,0,10"/>
+                    <dxre:RichEditControl x:Name="PopupRichEditBox" ReadOnly="True" CommandBarStyle="Ribbon" FlowDirection="LeftToRight" Margin="0,0,0,40" Height="480"/>
+                    <WrapPanel HorizontalAlignment="Right" Margin="0,11,0,0" Width="100">
+                        <Button x:Name="LegalBriefDetailsPopupCloseBTN" Content="❌ بستن" Background="#1259D5" Foreground="White" Cursor="Hand" Margin="25 -50 0 0" Height="30" Click="LegalBriefDetailsPopupCloseBTN_Click"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

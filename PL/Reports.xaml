@@ -1,0 +1,313 @@
+﻿<Window x:Class="Heyam.Reports"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:Heyam"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Title="Reports" Height="670" Width="1250" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FlowDirection="RightToLeft">
+    <!-- نوار کناری (منو) -->
+    <Border Background="Transparent" CornerRadius="10">
+        <Grid Margin="10">
+            <Border x:Name="border" BorderBrush="#2A2929" BorderThickness="5" CornerRadius="5">
+                <Grid Margin="5,5,5,5">
+                    <!-- Header -->
+                    <Border Background="#1259D5" Height="50" VerticalAlignment="Top">
+                        <TextBlock Text="گزارشات" Foreground="White" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Border>
+
+                    <!-- Tab Control -->
+                    <TabControl x:Name="ReportTabs" Margin="20,60,20,37" FontWeight="Bold" SelectionChanged="ReportTabs_SelectionChanged" >
+                        <!-- Tab: گزارش گیری مالی -->
+                        <TabItem x:Name="FinancialTab" Header="گزارش گیری مالی" Cursor="Hand">
+                            <Grid Background="White" Height="505">
+                                <!-- Header -->
+                                <DockPanel Background="#3E4A61" Height="50">
+                                    <TextBlock Text="گزارش‌گیری مالی" Foreground="White" 
+                                    FontSize="18" VerticalAlignment="Center"
+                                    HorizontalAlignment="Center" FontWeight="Bold"/>
+                                </DockPanel>
+
+                                <!-- Main Content -->
+                                <Grid Margin="0 15 0 0">
+                                    <TabControl Name="ReportsTabControl">
+                                        <!-- نمودار درآمد و هزینه -->
+                                        <TabItem x:Name="IncomeAndCostChart" Header="درآمد و هزینه" Margin="250,0,-253,0">
+                                            <Grid Margin="10" FlowDirection="LeftToRight">
+                                                <GroupBox Header="نمایش کل درآمدها و هزینه ها"  Margin="0,10,0,0">
+                                                    <lvc:CartesianChart Name="ReportChart" Margin="20,20,20,36">
+                                                        <lvc:CartesianChart.AxisX>
+                                                            <lvc:Axis Title="ماه‌ها" Labels="{Binding Labels}" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" />
+                                                        </lvc:CartesianChart.AxisX>
+                                                        <lvc:CartesianChart.AxisY>
+                                                            <lvc:Axis Title="(مبالغ (ریال" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" />
+                                                        </lvc:CartesianChart.AxisY>
+                                                    </lvc:CartesianChart>
+                                                </GroupBox>
+                                                <WrapPanel>
+                                                    <!-- فیلتر بازه زمانی -->
+                                                    <ComboBox x:Name="TimeRangeCB" Cursor="Hand" Width="94" Margin="360 50" HorizontalContentAlignment="Center" SelectionChanged="TimeRangeCB_SelectionChanged">
+                                                        <ComboBoxItem Content="روزانه"/>
+                                                        <ComboBoxItem Content="ماهانه" IsSelected="True"/>
+                                                        <ComboBoxItem Content="سالانه"/>
+                                                    </ComboBox>
+                                                </WrapPanel>
+                                                <WrapPanel x:Name="YearRangeWP" IsEnabled="False" HorizontalAlignment="Left" Margin="360,398,0,0" FlowDirection="RightToLeft" Width="461" Height="50" VerticalAlignment="Top">
+                                                    <TextBlock Text="از سال:" VerticalAlignment="Center" />
+                                                    <ComboBox x:Name="YearFromCB" IsEditable="True" Width="75" Height="20"/>
+                                                    <TextBlock Text="تا سال:" VerticalAlignment="Center" />
+                                                    <ComboBox x:Name="YearToCB" IsEditable="True" Width="75" Height="20"/>
+                                                    <Button x:Name="YearlyChartBTN" Content="نمایش گزارش سالانه" Click="YearlyChartBTN_Click" Background="Gold" Foreground="Black" Margin="10"/>
+                                                </WrapPanel>
+                                                <Button Name="PrintChartReportBTN" Content="چاپ گزارش" Background="ForestGreen" Foreground="White" Cursor="Hand" Margin="10,407,0,0" Width="120" Height="30" Click="PrintChartReportBTN_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            </Grid>
+                                        </TabItem>
+                                        <!-- قراردادها و پرداخت‌ها -->
+                                        <TabItem Header="قراردادها" Margin="253,0,-252,0">
+                                            <Grid Margin="10">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="245*"/>
+                                                    <RowDefinition Height="37*"/>
+                                                </Grid.RowDefinitions>
+                                                <!-- Filters Section -->
+                                                <WrapPanel Margin="0,10,0,334">
+                                                    <TextBox x:Name="ContractSearchClient" Width="200" Margin="0,0,10,0" TextChanged="ContractSearchClient_TextChanged" />
+                                                    <TextBlock x:Name="ClientNamePlaceholderText" Text="نام موکل، شماره پرونده ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-200,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+                                                    <hc:PersianDatePicker x:Name="ContractStartDP" Width="200" Margin="0,0,10,0" SelectedDateChanged="ContractStartDP_SelectedDateChanged"/>
+                                                    <TextBlock x:Name="ContractStartPlaceholderText" Text="از بازه زمانی ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-200,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+                                                    <hc:PersianDatePicker x:Name="ContractEndDP" Width="200" Margin="0,0,10,0" SelectedDateChanged="ContractEndDP_SelectedDateChanged"/>
+                                                    <TextBlock x:Name="ContractEndPlaceholderText" Text="تا بازه زمانی ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-200,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+                                                    <Button x:Name="DateFilterBTN" Content="فیلتر" Background="#1259D5" Foreground="White" Width="60" Click="DateFilterBTN_Click" />
+                                                </WrapPanel>
+
+                                                <!-- جدول اطلاعات موکل‌ها -->
+                                                <DataGrid x:Name="ReportContractsDGV" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeColumns="True" Margin="0,52,0,50" Grid.RowSpan="2">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTemplateColumn Header="کاربر" Width="55">
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding UserTypeText}" Foreground="{Binding UserTypeColor}" />
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTextColumn Header="نام موکل" Binding="{Binding ClientName}" Width="*"/>
+                                                        <DataGridTextColumn Header="شماره پرونده" Binding="{Binding CaseNumber}" Width="150"/>
+                                                        <DataGridTextColumn Visibility="Visible" Header="موضوع پرونده" Binding="{Binding CaseSubject}" Width="*"/>
+                                                        <DataGridTemplateColumn Header="نوع قرارداد" Width="*">
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding ContractTypeText}" Foreground="{Binding ContractTypeColor}" />
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTextColumn Header="مبلغ حق الوکاله" Binding="{Binding TotalAmountFormat}" Width="*"/>
+                                                        <DataGridTextColumn Header="تاریخ تنظیم" Binding="{Binding SetDateShamsi}" Width="*"/>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+
+                                                <!-- Summary Section -->
+                                                <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="1" Margin="0,0,0,10">
+                                                    <TextBlock Text=" تعداد رکوردها: " FontWeight="Bold"/>
+                                                    <TextBlock x:Name="TotalRecordsText" Foreground="DarkRed"  Margin="5,0"/>
+                                                    <TextBlock Text="| مجموع پرداخت‌شده: " FontWeight="Bold" />
+                                                    <TextBlock x:Name="TotalPaidText" Foreground="#1259D5" Margin="5,0"/>
+                                                </WrapPanel>
+                                                <!-- Preview Area -->
+                                                <FlowDocumentScrollViewer x:Name="ContractsReportGenerate" Visibility="Collapsed" Grid.Row="1" HorizontalAlignment="Left" Margin="0,74,0,0" />
+                                                <Button Name="PrintContractReportBTN" Content="🖨 چاپ و پرینت اطلاعات" Background="Green" Foreground="White" Cursor="Hand"  Margin="629,16,0,0" Width="157" Height="30" Click="PrintContractReportBTN_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1"/>
+                                            </Grid>
+                                        </TabItem>
+
+                                        <!--درآمدها -->
+                                        <TabItem Header="درآمدها" Margin="253,0,-252,0">
+                                            <Grid Margin="10">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="245*"/>
+                                                    <RowDefinition Height="37*"/>
+                                                </Grid.RowDefinitions>
+                                                <!-- Filters Section -->
+                                                <WrapPanel Margin="0,10,0,334">
+                                                    <TextBox x:Name="PaymentReportSearchClient" Width="200" Margin="0,0,10,0" TextChanged="PaymentReportSearchClient_TextChanged" />
+                                                    <TextBlock x:Name="PaymentReportClientNamePlaceholderText" Text="نام موکل، موضوع پرونده ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-200,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140"/>
+                                                    <hc:PersianDatePicker x:Name="PaymentStartDP" Width="200" Margin="0,0,10,0" SelectedDateChanged="PaymentStartDP_SelectedDateChanged"/>
+                                                    <TextBlock x:Name="PaymentStartPlaceholderText" Text="از بازه زمانی ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-200,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+                                                    <hc:PersianDatePicker x:Name="PaymentEndDP" Width="200" Margin="0,0,10,0" SelectedDateChanged="PaymentEndDP_SelectedDateChanged"/>
+                                                    <TextBlock x:Name="PaymentEndPlaceholderText" Text="تا بازه زمانی ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-200,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+                                                    <Button x:Name="PaymentDateFilterBTN" Content="فیلتر" Background="#1259D5" Foreground="White" Width="60" Click="PaymentDateFilterBTN_Click" />
+                                                    <ComboBox x:Name="PaymentReportStatusCB" Visibility="Collapsed" Width="125" Margin="0,0,10,0" SelectionChanged="PaymentReportStatusCB_SelectionChanged">
+                                                        <ComboBoxItem Content="همه وضعیت‌ها" Tag="" IsSelected="True" />
+                                                        <ComboBoxItem Content="پیش پرداخت" Tag="0" />
+                                                        <ComboBoxItem Content="تسویه شده" Tag="1" />
+                                                    </ComboBox>
+                                                </WrapPanel>
+
+                                                <!-- جدول اطلاعات موکل‌ها -->
+                                                <DataGrid x:Name="PaymentReportDGV" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeColumns="True" Margin="0,52,0,50" Grid.RowSpan="2">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTemplateColumn Header="کاربر" Width="55">
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding UserTypeText}" Foreground="{Binding UserTypeColor}" />
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTextColumn Header="نام موکل" Binding="{Binding ClientName}" Width="*"/>
+                                                        <DataGridTextColumn Header="تلفن همراه" Binding="{Binding ClientPhoneNumber}" Width="*"/>
+                                                        <DataGridTextColumn Visibility="Collapsed" Header="شماره پرونده" Binding="{Binding ClientCaseNumber}" Width="*"/>
+                                                        <DataGridTextColumn Visibility="Collapsed" Header="روش پرداخت" Binding="{Binding PaymentType}" Width="*"/>
+                                                        <DataGridTextColumn Visibility="Collapsed" Header="مبلغ" Binding="{Binding Amount}" Width="*"/>
+                                                        <DataGridTextColumn Header="موضوع پرونده" Binding="{Binding ClientCaseSubject}" Width="*"/>
+                                                        <DataGridTemplateColumn Header="نوع خدمت" Width="*">
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding ServiceTypeText}" Foreground="{Binding ServiceTypeColor}" />
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTemplateColumn Header="وضعیت" Width="*">
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding PaymentStatusTypeText}" Foreground="{Binding PaymentStatusTypeColor}" />
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTextColumn Visibility="Visible" Header="تاریخ پرداخت" Binding="{Binding SetDateShamsi}" Width="*"/>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+
+                                                <!-- Summary Section -->
+                                                <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="1" Margin="0,0,0,10">
+                                                    <TextBlock Text=" تعداد رکوردها: " FontWeight="Bold"/>
+                                                    <TextBlock x:Name="PaymentReportTotalRecordsText" Foreground="DarkRed"  Margin="5,0"/>
+                                                    <TextBlock Text="| مجموع پرداخت‌شده: " FontWeight="Bold" />
+                                                    <TextBlock x:Name="PaymentReportTotalPaidText" Foreground="#1259D5" Margin="5,0"/>
+                                                </WrapPanel>
+                                                <!-- Preview Area -->
+                                                <FlowDocumentScrollViewer x:Name="PaymentReportGenerate" Visibility="Collapsed" Grid.Row="1" HorizontalAlignment="Left" Margin="0,74,0,0" />
+                                                <Button Name="PrintPaymentReportBTN" Content="🖨 چاپ و پرینت اطلاعات" Background="Green" Foreground="White" Cursor="Hand"  Margin="629,16,0,0" Width="157" Height="30" Click="PrintPaymentReportBTN_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1"/>
+                                            </Grid>
+                                        </TabItem>
+
+                                        <!--هزینه ها -->
+                                        <TabItem Header="هزینه ها" Margin="253,0,-252,0">
+                                            <Grid Margin="10">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="245*"/>
+                                                    <RowDefinition Height="37*"/>
+                                                </Grid.RowDefinitions>
+                                                <!-- Filters Section -->
+                                                <WrapPanel Margin="0,10,0,334">
+                                                    <TextBox x:Name="ExpenseReportSearchClient" Width="200" Margin="0,0,10,0" TextChanged="ExpenseReportSearchClient_TextChanged" />
+                                                    <TextBlock x:Name="ExpenseReportClientNamePlaceholderText" Text="عنوان هزینه ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-200,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+                                                    <hc:PersianDatePicker x:Name="ExpenseStartDP" Width="200" Margin="0,0,10,0" SelectedDateChanged="ExpenseStartDP_SelectedDateChanged"/>
+                                                    <TextBlock x:Name="ExpenseStartPlaceholderText" Text="از بازه زمانی ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-200,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+                                                    <hc:PersianDatePicker x:Name="ExpenseEndDP" Width="200" Margin="0,0,10,0" SelectedDateChanged="ExpenseEndDP_SelectedDateChanged"/>
+                                                    <TextBlock x:Name="ExpenseEndPlaceholderText" Text="تا بازه زمانی ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-200,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+                                                    <Button x:Name="ExpenseDateFilterBTN" Content="فیلتر" Background="#1259D5" Foreground="White" Width="60" Click="ExpenseDateFilterBTN_Click" />
+                                                </WrapPanel>
+
+                                                <!-- لیست هزینه‌ها -->
+                                                <DataGrid x:Name="ReportExpensesDGV" AutoGenerateColumns="False"
+                                                    Margin="0,47,0,47" IsReadOnly="True" SelectionMode="Single" Grid.RowSpan="2">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTemplateColumn Header="کاربر" Width="55">
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding UserTypeText}" Foreground="{Binding UserTypeColor}" />
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTextColumn Header="عنوان هزینه" Binding="{Binding Title}" Width="*"/>
+                                                        <DataGridTextColumn Header="مبلغ" Binding="{Binding Amount, StringFormat={}{0:N0} ريال}" Width="*"/>
+                                                        <DataGridTextColumn Header="تاریخ" Binding="{Binding SetDateShamsi}" Width="*"/>
+                                                        <DataGridTextColumn Header="نوع هزینه" Binding="{Binding ExpenseType}" Width="120"/>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+
+                                                <!-- مجموع -->
+                                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 10 0 0" Width="275">
+                                                    <TextBlock Text="تعداد کل رکوردها: " FontWeight="Bold" VerticalAlignment="Center"/>
+                                                    <TextBlock x:Name="ReportExpenseTotalCountText" Foreground="DarkRed" Margin="10,14"/>
+                                                    <TextBlock Text=" | مجموع مبلغ: " FontWeight="Bold" VerticalAlignment="Center"/>
+                                                    <TextBlock x:Name="ReportExpenseTotalAmountText" Foreground="#1259D5" Margin="5,14"/>
+                                                </StackPanel>
+                                                <!-- Preview Area -->
+                                                <FlowDocumentScrollViewer x:Name="ExpenseReportGenerate" Visibility="Collapsed" Grid.Row="1" HorizontalAlignment="Left" Margin="0,74,0,0" />
+                                                <Button Name="PrintExpenseReportBTN" Content="🖨 چاپ و پرینت اطلاعات" Background="Green" Foreground="White" Cursor="Hand"  Margin="629,16,0,0" Width="157" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Click="PrintExpenseReportBTN_Click"/>
+                                            </Grid>
+                                        </TabItem>
+                                    </TabControl>
+                                </Grid>
+                                <FlowDocumentReader Visibility="Collapsed">
+                                    <FlowDocument FlowDirection="RightToLeft">
+                                        <Paragraph TextAlignment="Center">
+                                            <!--متن فارسی شما اینجاست-->
+                                        </Paragraph>
+                                    </FlowDocument>
+                                </FlowDocumentReader>
+                            </Grid>
+                        </TabItem>
+
+                        <!--گزارشات پرونده‌های قضایی-->
+                        <TabItem x:Name="CasesTab" Header="پرونده‌های قضایی" Cursor="Hand" Height="30">
+                            <Grid Background="White" Margin="5">
+                                <!-- Filters Section -->
+                                <WrapPanel Margin="0,5,0,40" Grid.RowSpan="2">
+                                    <TextBox x:Name="CasesSearchClientTB" Width="200" Margin="0,0,10,0" TextChanged="CasesSearchClientTB_TextChanged"/>
+                                    <TextBlock x:Name="CasesClientNamePlaceholderText" Text="نام موکل، شماره پرونده، عنوان ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-200,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
+                                    <hc:PersianDatePicker x:Name="CasesStartDateDP" Width="150" Margin="0,0,10,0" SelectedDateChanged="CasesStartDateDP_SelectedDateChanged"/>
+                                    <TextBlock x:Name="CasesStartDatePlaceholderText" Text="بازه زمانی شروع ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-150,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                                    <hc:PersianDatePicker x:Name="CasesEndDateDP" Width="150" Margin="0,0,10,0" SelectedDateChanged="CasesEndDateDP_SelectedDateChanged"/>
+                                    <TextBlock x:Name="CasesEndDatePlaceholderText" Text="بازه زمانی پایان ..." IsHitTestVisible="False" Foreground="Gray" FontSize="11" HorizontalAlignment="Left" Margin="-150,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                                    <Button x:Name="ApplyFiltersBTN" Content="فیلتر" Background="#1259D5" Foreground="White" Cursor="Hand" Width="100" Height="30" Click="ApplyFiltersBTN_Click"/>
+                                </WrapPanel>
+                                <DataGrid x:Name="ReportCasesDGV" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeColumns="True" Margin="0 45 0 0">
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Header="کاربر" Width="55">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding UserTypeText}" Foreground="{Binding UserTypeColor}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Header="شماره پرونده" Binding="{Binding CaseNumber}" Width="150" />
+                                        <DataGridTextColumn Header="نام موکل" Binding="{Binding ClientName}" Width="140" />
+                                        <DataGridTextColumn Header="تاریخ تنظیم" Binding="{Binding SetDate}" Width="90" />
+                                        <DataGridTextColumn Header="عنوان" Binding="{Binding CaseTitle}" Width="90" />
+                                        <DataGridTextColumn Header="موضوع" Binding="{Binding CaseSubject}" Width="90" />
+                                        <DataGridTemplateColumn Header="وضعیت" Width="100">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding StatusText}" Foreground="{Binding StatusColor}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Header="خوانده (طرف مقابل)" Binding="{Binding OpponentPerson}" Width="140" />
+                                        <DataGridTextColumn Header="شماره بایگانی پرونده" Binding="{Binding CaseArchiveNumber}" Width="150" />
+                                        <DataGridTextColumn Header="شعبه رسیدگی کننده" Binding="{Binding ProcessingBranch}" Width="140" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                    <WrapPanel x:Name="CasesItemsReportWP" Visibility="Collapsed" VerticalAlignment="Bottom">
+                        <TextBlock x:Name="Case_Amount" Text="تعداد پرونده های ثبت شده (جاری):" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FontSize="11" FontWeight="Bold" Width="180" Foreground="DarkBlue" TextAlignment="Right" FlowDirection="RightToLeft" Height="18" Margin="0 13 0 0"/>
+                        <TextBlock x:Name="Case_AmountCalculate" Text="0" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FontSize="14" FontWeight="Bold" Width="140" Foreground="DarkBlue" TextAlignment="Right" FlowDirection="LeftToRight" Height="20" Margin="25 10 0 0"/>
+                        <TextBlock x:Name="ClosedCase_Amount" Text="تعداد پرونده های مختومه:" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FontSize="11" FontWeight="Bold" Width="150" Foreground="DarkBlue" TextAlignment="Left" FlowDirection="RightToLeft" Margin="-500 50 0 0"/>
+                        <TextBlock x:Name="ClosedCase_AmountCalculate" Text="0" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FontSize="14" FontWeight="Bold" Width="100" Foreground="DarkBlue" TextAlignment="Right" FlowDirection="LeftToRight" Height="20" Margin="-180 45 0 0 "/>
+                        <FlowDocumentScrollViewer x:Name="CasesReportGenerate" Visibility="Collapsed" Grid.Row="1" HorizontalAlignment="Left" Margin="0,74,0,0" />
+                        <Button Name="PrintCasesReportBTN" Content="🖨 چاپ و پرینت اطلاعات" Visibility="Visible" Background="Green" Foreground="White" FontWeight="Bold" Cursor="Hand"  Width="155" Height="30" Margin="0 30 0 0" Click="PrintCasesReportBTN_Click"/>
+                    </WrapPanel>
+                    <Button x:Name="CloseBTN" Background="#1259D5" Foreground="White" FontWeight="Bold" Content="برگشت" Width="75" Height="31" Cursor="Hand" Margin="0,0,20,1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="CloseBTN_Click"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="PrimaryBackground">#1E1E1E</Color>
+    <Color x:Key="PrimaryForeground">#FFFFFF</Color>
+    <Color x:Key="ButtonBackground">#333333</Color>
+    <Color x:Key="ButtonForeground">#FFFFFF</Color>
+    <Color x:Key="FillRectangleBackground">#1E1E1E</Color>
+    <Color x:Key="FillRectangleBackgroundPurple">#1E1E1E</Color>
+
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource PrimaryBackground}" />
+    <SolidColorBrush x:Key="ForegroundBrush" Color="{DynamicResource PrimaryForeground}" />
+    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{DynamicResource ButtonBackground}" />
+    <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{DynamicResource ButtonForeground}" />
+    <SolidColorBrush x:Key="FillRectangle" Color="{DynamicResource FillRectangleBackground}" />
+    <SolidColorBrush x:Key="FillRectangle1" Color="{DynamicResource FillRectangleBackgroundPurple}" />
+
+</ResourceDictionary>

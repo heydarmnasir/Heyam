@@ -1,0 +1,753 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BC020A98-97DE-4120-B8EC-AFCD0631C8EF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Heyam</RootNamespace>
+    <AssemblyName>Heyam</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Heyam.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.37, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.Desktop.v24.2, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v24.2, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Drawing.v24.2, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Mvvm.v24.2, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v24.2.Core, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v24.2.Core, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v24.2.Core, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v24.2.Core, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Core.v24.2, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.RichEdit.v24.2">
+      <HintPath>C:\Program Files\DevExpress 24.2\Components\Bin\Framework\DevExpress.Xpf.RichEdit.v24.2.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FoxLearn.License">
+      <HintPath>.\FoxLearn.License.dll</HintPath>
+    </Reference>
+    <Reference Include="HandyControl, Version=3.6.0.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
+      <HintPath>..\packages\HandyControls.3.6.0\lib\net48\HandyControl.dll</HintPath>
+    </Reference>
+    <Reference Include="IPE.SmsIrClient, Version=1.2.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IPE.SmsIr.1.2.7\lib\netstandard2.0\IPE.SmsIrClient.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MD.PersianDateTime, Version=4.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MD.PersianDateTime.4.5.0\lib\net20\MD.PersianDateTime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.7, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.7\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.Cryptography, Version=9.0.0.7, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Cryptography.9.0.7\lib\net462\Microsoft.Bcl.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=9.0.0.7, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.9.0.7\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=9.0.0.7, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.9.0.7\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=9.0.0.7, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.9.0.7\lib\net462\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=9.0.0.7, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.9.0.7\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=9.0.0.7, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.9.0.7\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=9.0.0.7, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.9.0.7\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.1\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.3351.48, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.3351.48\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.3351.48, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.3351.48\lib\net462\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.3351.48, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.3351.48\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.135\lib\net462\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=6.2.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.0\lib\netstandard2.0\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.BarCodes, Version=6.2.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.0\lib\netstandard2.0\PdfSharp.BarCodes.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=6.2.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.0\lib\netstandard2.0\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Cryptography, Version=6.2.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.0\lib\netstandard2.0\PdfSharp.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Quality, Version=6.2.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.0\lib\netstandard2.0\PdfSharp.Quality.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Shared, Version=6.2.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.0\lib\netstandard2.0\PdfSharp.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Snippets, Version=6.2.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.0\lib\netstandard2.0\PdfSharp.Snippets.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.System, Version=6.2.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.0\lib\netstandard2.0\PdfSharp.System.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.WPFonts, Version=6.2.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.0\lib\netstandard2.0\PdfSharp.WPFonts.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=9.0.0.7, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.9.0.7\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.9.0.7\lib\net462\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Formats.Asn1, Version=9.0.0.7, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Asn1.9.0.7\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=9.0.0.7, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.9.0.7\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Json.6.0.0\lib\net461\System.Net.Http.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=9.0.0.7, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.9.0.7\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=9.0.0.7, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.9.0.7\lib\net462\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encodings.Web, Version=9.0.0.7, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.9.0.7\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=9.0.0.7, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.9.0.7\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="XanderUI">
+      <HintPath>.\XanderUI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ActivityReminderForm.xaml.cs">
+      <DependentUpon>ActivityReminderForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CaseManagement.xaml.cs">
+      <DependentUpon>CaseManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientManagement.xaml.cs">
+      <DependentUpon>ClientManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FinancialManagementForm.xaml.cs">
+      <DependentUpon>FinancialManagementForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LegalAutomation.xaml.cs">
+      <DependentUpon>LegalAutomation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LegalInfoBank.xaml.cs">
+      <DependentUpon>LegalInfoBank.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationWindow.xaml.cs">
+      <DependentUpon>NotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterWindow.xaml.cs">
+      <DependentUpon>RegisterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reports.xaml.cs">
+      <DependentUpon>Reports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SMSPanel.xaml.cs">
+      <DependentUpon>SMSPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen.xaml.cs">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ClockMainWindow.xaml.cs">
+      <DependentUpon>UC_ClockMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_Reminder.xaml.cs">
+      <DependentUpon>UC_Reminder.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ActivityReminderForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CaseManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FinancialManagementForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LegalAutomation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LegalInfoBank.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="NotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Languages\Lang.en.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Languages\Lang.fa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\DarkTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\LightTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SMSPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SplashScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_ClockMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_Reminder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\ادله پیش زمینه در حقوق ایران و انگلیس.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\بحث تطبیقی سرقت در حقوق ایران آمریکا و کانادا.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\بررسی علم قاضی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\تعارض تعهدات اصلی و فرعی در قرار داد.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\تعلیق مجازات در حقوق جزا و رویه محاکم ایران.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\حقوق بشر و تناقض با سیاست های آمریکا.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\حقوق و بالزاک.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\دانلود کتابچه خانواده،جنسیت و حقوق در دانمارک.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\دیوان کیفری بین المللی ؛ پایان یلدای مصونیت بی کیفرمانی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\رکن مادی کلاهبرداری.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\قواعد حاکم بر استجواب کیفری.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\ماهیت حقوقی وصیت.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\مبانی نظری تعهدات طبیعی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\نقد و بررسی دادرسی فوری در حقوق انگلیس.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\نقش قرار داد های خصوصی در نکاح.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Articles\چگونه می توانید دکتری و کارشناسی ارشد بگیرید.pdf" />
+    <None Include="Resources\Laws_Articles\AenDadrasiDadgahomomi&amp;enghlab%28Madani%29_Law.json" />
+    <None Include="Resources\Laws_Articles\AenDadrasiKeyfari_Law.json" />
+    <None Include="Resources\Laws_Articles\AmvalGheyrManghoolAtbaKhareje_Law.json" />
+    <None Include="Resources\Laws_Articles\ArticlePersonalNotes\آیین دادرسی مدنی\Article_2.json" />
+    <None Include="Resources\Laws_Articles\ArticlePersonalNotes\قانون اساسی\Article_8.json" />
+    <None Include="Resources\Laws_Articles\ArticlePersonalNotes\قانون جرم سیاسی\Article_3.json" />
+    <None Include="Resources\Laws_Articles\Asasi_Law.json" />
+    <None Include="Resources\Laws_Articles\Bime_Law.json" />
+    <None Include="Resources\Laws_Articles\CheckTazminShode_Law.json" />
+    <None Include="Resources\Laws_Articles\DaftarAsnad_Law.json" />
+    <None Include="Resources\Laws_Articles\EjrayeAhkamMadani_Law.json" />
+    <None Include="Resources\Laws_Articles\ElzamBeSabtRasmiMoamelatAmvalGheyrManghool_Law.json" />
+    <None Include="Resources\Laws_Articles\EslahAenDadrasiKeyfari_Law.json" />
+    <None Include="Resources\Laws_Articles\EslahGhanonMojazatghachaghAslahe_Law.json" />
+    <None Include="Resources\Laws_Articles\EslahGhanoonNezamSenfi_Law.json" />
+    <None Include="Resources\Laws_Articles\EslahMaddeh104GhanoonMojazatEslami_Law.json" />
+    <None Include="Resources\Laws_Articles\EslahMobarezeBaPoolShoe_Law.json" />
+    <None Include="Resources\Laws_Articles\EslahSodorCheck_Law.json" />
+    <None Include="Resources\Laws_Articles\HemayatFamily_Law.json" />
+    <None Include="Resources\Laws_Articles\JormSeyasi_Law.json" />
+    <None Include="Resources\Laws_Articles\KaheshMojazatHabsTaaziri_Law.json" />
+    <None Include="Resources\Laws_Articles\Madani_Law.json" />
+    <None Include="Resources\Laws_Articles\Moajer&amp;Mostaajer_Law.json" />
+    <None Include="Resources\Laws_Articles\MobarezeBaGhachaghKala&amp;Arz_Law.json" />
+    <None Include="Resources\Laws_Articles\MojazatAsidPashi_Law.json" />
+    <None Include="Resources\Laws_Articles\MojazatEnteghalMaalGheyr_Law.json" />
+    <None Include="Resources\Laws_Articles\MojazatEslami1375_Law.json" />
+    <None Include="Resources\Laws_Articles\MojazatEslami1392_Law.json" />
+    <None Include="Resources\Laws_Articles\MojazatEstefadeGheyrmojazAAbBargh_Law.json" />
+    <None Include="Resources\Laws_Articles\NezaratBarRaftarGhozat_Law.json" />
+    <None Include="Resources\Laws_Articles\OmorGomroki_Law.json" />
+    <None Include="Resources\Laws_Articles\PreSealSakhteman_Law.json" />
+    <None Include="Resources\Laws_Articles\SabtAhval_Law.json" />
+    <None Include="Resources\Laws_Articles\SabtSherkat_Law.json" />
+    <None Include="Resources\Laws_Articles\Saderat&amp;Varedat_Law.json" />
+    <None Include="Resources\Laws_Articles\Sea_Law.json" />
+    <None Include="Resources\Laws_Articles\Seyd&amp;Shekar_Law.json" />
+    <None Include="Resources\Laws_Articles\ShorahayeHalEkhtelaf_Law.json" />
+    <None Include="Resources\Laws_Articles\SodorCheck_Law.json" />
+    <None Include="Resources\Laws_Articles\TamalokAparteman_Law.json" />
+    <None Include="Resources\Laws_Articles\TasdighEnhesarVerasat_Law.json" />
+    <None Include="Resources\Laws_Articles\Tejarat_Law.json" />
+    <None Include="Resources\Laws_Articles\TransferJudge_Law.json" />
+    <None Include="Resources\Laws_Articles\Vekalat_Law.json" />
+    <None Include="Resources\Laws_Articles\Vorod&amp;EghamatAtbaKhareje_Law.json" />
+    <None Include="Resources\Laws_Articles\Work_Law.json" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Asasi_Law\آیین نامه رسیدگی به شکایات و گزارش های مربوط به نقض حقوق ملت در قانون اساسی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Asasi_Law\آیین نامه کمیسیون اصل ۹۰ قانون اساسی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Asasi_Law\آیین‌نامه نحوه اجرای اصل ۱۷۵ قانون اساسی درباره دادگاه‌های عمومی و انقلاب.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Asasi_Law\اصلاحیه آیین نامه نحوه رسیدگی به پرونده های موضوع اصل ۴۹ قانون اساسی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Madani_Law\آیین نامه حق الزحمه داوری موضوع ماده ۴۹۸ قانون آیین دادرسی دادگاه‌های عمومی و انقلاب در امور مدنی مصوب فروردین ماه ۱۳۷۹.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Madani_Law\لایحه اصلاح قانون آیین دادرسی مدنی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\AenDadrasiKeyfari_Law\آیین‌نامه نحوه اجرای احکام حدود، سلب حیات، قطع عضو، قصاص نفس و عضو و جرح، دیات، شلاق، تبعید، نفی بلد، اقامت اجباری و منع از اقامت در محل یا محل‌های معین.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Bime_Law\آیین نامه تبصره %28۵%29 ماده %28۱۸%29 قانون بیمه اجباری خسارات وارد شده به شخص ثالث در اثر حوادث ناشی از وسیله نقلیه.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Bime_Law\آیین ‌­نامه اجرایی ماده %28۴۲%29 قانون بیمه اجباری خسارات وارد شده به شخص ثالث در اثر حوادث ناشی از وسایل نقلیه.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Bime_Law\آیین‌­نامه اجرایی تبصره ماده %28۶%29 قانون بیمه اجباری خسارات وارد شده به شخص ثالث در اثر حوادث ناشی از وسایل نقلیه.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Bime_Law\آیین‌­نامه اجرایی ماده %28۳%29 قانون بیمه اجباری خسارات وارد شده به شخص ثالث در اثر حوادث ناشی از وسایل نقلیه.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Bime_Law\آیین‌­نامه اجرایی ماده %28۵۷%29 قانون بیمه اجباری خسارات وارد شده به شخص ثالث در اثر حوادث ناشی از وسایل نقلیه.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Bime_Law\آیین‌نامه تعیین سقف حق بیمه شخص ثالث و نحوه تخفیف، افزایش یا تقسیط آن.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Bime_Law\نحوه انتقال تخفیفات حاصل از نداشتن حوادث منجر به خسارت موضوع تبصره ماده %28۶%29 قانون بیمه اجباری خسارات وارد شده به شخص ثالث در اثر حوادث ناشی از وسایل نقلیه.pdf" />
+    <None Include="Resources\Legal_Files\AenLetters\Tejarat_Law\آیین نامه اجرایی مواد ۳۸ و ۴۲ قانون تجارت الکترونیکی.pdf" />
+    <None Include="Resources\Legal_Files\AenLetters\Tejarat_Law\آیین‌نامه اجرایی ماده %28۳۲%29 قانون تجارت الکترونیکی.pdf" />
+    <None Include="Resources\Legal_Files\AenLetters\Tejarat_Law\آیین‌نامه اجرایی ماده %28۴۸%29 قانون تجارت الکترو‌نیکی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Work_Law\آیین‌نامه اجرایی ماده %28۱۲۹%29 قانون کار.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\AenLetters\Work_Law\آیین‌نامه تبصره %28۲%29 ماده ۳۵ قانون کار.pdf" />
+    <Resource Include="Resources\Fonts\IRANSansWeb Persian.ttf" />
+    <Resource Include="Resources\Fonts\Sahel.ttf" />
+    <Resource Include="Resources\Fonts\Vazir.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Heyam.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Heyam_Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Done.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Enter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ExitUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\LoginIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Okay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\PassUnvisible.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\PassVisible.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\PasswordIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Reminders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Heyam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BE\BE.csproj">
+      <Project>{45d03633-7ca6-4376-b35d-d66e1032cc78}</Project>
+      <Name>BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{8085e5f3-fc52-4f1a-8b62-aafa4f3503f4}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\auction-hammer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Cases_Management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\AdlIran.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Activities.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Users_Management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\SMS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Reports.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ClosedCases.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\info-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\LoginForm BG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Financial-Management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Word1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\آيين‌نامه اجرايی قانون بازنشستگی پيش از موعد كاركنان دولت.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\آیین دادرسی کار.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون تشدید مجازات اسیدپاشی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون آیین دادرسی جرائم نیروهای مسلح و دادرسی الکترونیکی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون آیین دادرسی دادگاههای عمومی و انقلاب ‌در امور مدنی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون آیین دادرسی کیفری.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون اتباع.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون اجرای احکام مدنی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون اداره تصفیه امور ورشکستگی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون اساسی جمهوری اسلامی ایران.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون اصلاح قانون صدور چک.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون اصلاح قانون ممنوعیت بکارگیری بازنشستگان.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون امور حسبی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون برنامه و بودجه کشور.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون بيمه بيكاري ‌.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون بیمه اجباری شخص ثالث مصوب 1395 همراه با آیین نامه های اجرایی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون تأسيس و اداره مدارس، مراكز آموزشي و مراكز پرورشي غيردولتی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون تجارت الکترونیکی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون تجارت.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون تسهيل تسويه بدهي بدهكاران شبكه بانكي كشور.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون تسهيل تنظيم اسناد در دفاتر اسناد رسمي.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون تشويق و حمايت سرمايه‌ گذاري خارجي.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون تصدیق انحصار وراثت.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون تعیین تکلیف تابعیت فرزندان حاصل از ازدواج زنان ایرانی با مردان غیرایرانی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون تفسیر چگونگی امهال وام.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون ثبت اسناد و املاک.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون جامع كنترل و مبارزه ملي با دخانيات.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون جرایم رایانه ای.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون جرم سیاسی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون حفاظت از خاک.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون حفظ كاربري اراضي زراعي و باغها.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون حمايت از توسعه و ايجاد اشتغال پايدار در مناطق روستايي و عشايري.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون حمايت از حقوق مصرف كنندگان.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون حمايت از حقوق معلولان.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون حمایت از حقوق پدیدآورندگان نرم‌افزارهای رایانه‌ای.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون حمایت از مصرف کنندگان خودرو.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون حمایت خانواده.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون دریایی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون دیوان عدالت اداری.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون راجع به اموال غیر منقول اتباع خارجی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون رسیدگی به تخلفات رانندگی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون زمين شهري.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون شرایط انتخاب قضات دادگستری.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون شهرداری.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون شوراهاي حل اختلاف.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون شکار و صید.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون صدور چک.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون ماليات بر ارزش افزوده.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مبارزه با تأمين مالي تروريسم.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مبارزه با قاچاق انسان.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مبارزه با قاچاق کالا و ارز با اصلاحات 1394.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مبارزه با پولشویی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مجازات اخلالگران در نظام اقتصادی کشور.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مجازات استفاده غیرمجاز از عناوین علمی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مجازات استفاده كنندگان غيرمجاز از آب، برق، تلفن، فاضلاب و گاز.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مجازات اسلامی مصوب 1392.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مجازات اسلامی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مجازات راجع به انتقال مال غیر.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مجازات قاچاق اسلحه و مهمات و دارندگان سلاح و مهمات غیرمجاز.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مدنی جمهوری اسلامی ایران.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون مدیریت خدمات کشوری.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون معافیت وزارتخانه‌ها و مؤسسات دولتی از پرداخت هزینه‌های ثبتی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون نحوه اجرای محکومیت مالی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون نحوه اهداء جنين به زوجين نابارور.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون نحوه مجازات اشخاصی که در امور  سمعی و بصری فعالیت های غیر مجاز میکنند.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون نحوه واگذاري مالكيت و اداره امور شهرك هاي صنعتی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون نظارت بر رفتار قضات.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون نظام صنفی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون هوای پاک.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون وظایف و اختیارات رئیس قوه قضائیه.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون پيش ‌فروش ساختمان.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون پیشگیری و مقابله با تقلب در تهیه آثار علمی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون چک‌های تضمین‌شده.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون کار.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون کیفیت اخذ پروانه وکالت دادگستری.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قانون گذرنامه.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\قوانین و مقررات دادرسی کیفری در دادگاههای عمومی و انقلاب  .pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\مجموعه قوانین خاص حقوقی و کیفری.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\‌قانون اراضي شهري.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\‌قانون اراضی مستحدث و ساحلی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\‌قانون تأمین اجتماعی.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\‌قانون ثبت احوال.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\‌قانون رسيدگي به تخلفات اداري.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\‌قانون كانون كارشناسان رسمي دادگستري.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\‌قانون مقررات صادرات و واردات.pdf" />
+    <EmbeddedResource Include="Resources\Legal_Files\Laws\‌قانون نقل و انتقال دوره‌ای قضات.pdf" />
+    <Resource Include="Resources\Images\PDF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\PDF1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\loading-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\loop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\updated.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\attorney.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\LoginWindowBG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\success.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\error1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\warning1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Sounds\NotificationSound.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\NoteCategory\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net48.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net48.targets'))" />
+    <Error Condition="!Exists('..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.3351.48\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.3351.48\build\Microsoft.Web.WebView2.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net48.targets" Condition="Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net48.targets')" />
+  <Import Project="..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.3351.48\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.3351.48\build\Microsoft.Web.WebView2.targets')" />
+</Project>
