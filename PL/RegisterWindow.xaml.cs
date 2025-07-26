@@ -25,6 +25,7 @@ namespace Heyam
             LicenseKeyTB.Focus();
         }
 
+        //متدها
         #region Methods
         public void OpenBlurWindow(Window window)
         {
