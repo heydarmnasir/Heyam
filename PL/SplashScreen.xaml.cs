@@ -23,7 +23,7 @@ namespace Heyam
             timer.Stop();
             LoginWindow loginwindow = new LoginWindow();
             loginwindow.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }
