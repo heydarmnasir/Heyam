@@ -27,7 +27,7 @@
 
                     <!-- فیلد کد سیستم -->
                     <TextBlock Text="کد سیستم:" FontSize="14" Foreground="#666"/>
-                    <TextBox x:Name="SystemCodeTB" Width="270" Height="30" BorderThickness="1" BorderBrush="Gray" 
+                    <TextBox x:Name="SystemCodeTB" IsReadOnly="True" Width="270" Height="30" BorderThickness="1" BorderBrush="Gray" 
                          Padding="5" Background="#FAFAFA" Margin="0,5,0,10"/>
 
                     <!-- فیلد لایسنس -->
