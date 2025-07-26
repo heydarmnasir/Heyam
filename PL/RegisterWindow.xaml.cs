@@ -90,22 +90,29 @@ namespace Heyam
             }
         }
         #endregion
-
+       
         private void CheckLicenseBTN_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(LicenseKeyTB.Text))
             {
                 CustomMessageBox window = new CustomMessageBox("نرم افزار هـــــیام", "!فیلد لایسنس خالی است", false, CustomMessageBox.MessageType.Error);
                 OpenBlurWindow(window);
+                return;
             }
-            else
+
+            string productKey = LicenseKeyTB.Text;
+            KeyManager km = new KeyManager(SystemCodeTB.Text);
+
+            // ساخت مسیر امن برای ذخیره فایل
+            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var appFolder = Path.Combine(appDataPath, "Heyam");
+            Directory.CreateDirectory(appFolder);
+
+            var usedKeysFile = Path.Combine(appFolder, "UsedLicenseKeys.txt");
+
+            try
             {
-                KeyManager km = new KeyManager(SystemCodeTB.Text);
-                string productKey = LicenseKeyTB.Text;
-
-                var usedKeysFile = Path.Combine(System.Windows.Forms.Application.StartupPath, "UsedLicenseKeys.txt");
-
-                // بررسی اینکه قبلاً استفاده شده یا نه
+                // بررسی تکراری بودن لایسنس
                 if (File.Exists(usedKeysFile))
                 {
                     var usedKeys = File.ReadAllLines(usedKeysFile);
@@ -117,6 +124,7 @@ namespace Heyam
                     }
                 }
 
+                // بررسی صحت لایسنس
                 if (km.ValidKey(ref productKey))
                 {
                     KeyValuesClass kv = new KeyValuesClass();
@@ -135,11 +143,14 @@ namespace Heyam
                             lic.Year = kv.Expiration.Year;
                         }
 
-                        km.SaveSuretyFile(string.Format(@"{0}\Key.lic", System.Windows.Forms.Application.StartupPath), lic);
+                        // ذخیره فایل لایسنس در مسیر امن
+                        var licensePath = Path.Combine(appFolder, "Key.lic");
+                        km.SaveSuretyFile(licensePath, lic);
 
                         // ذخیره کلید در لیست استفاده‌شده‌ها
                         File.AppendAllText(usedKeysFile, productKey + Environment.NewLine);
 
+                        // نمایش موفقیت
                         CustomMessageBox window = new CustomMessageBox("نرم افزار هـــــیام", "تبریک! نرم افزار با موفقیت فعال شد", false, CustomMessageBox.MessageType.Success);
                         OpenBlurWindow(window);
                         ActivatedProgramLabel.Visibility = Visibility.Visible;
@@ -154,7 +165,12 @@ namespace Heyam
                     OpenBlurWindow(window);
                     LicenseKeyTB.Focus();
                 }
-
+            }
+            catch (Exception ex)
+            {
+                // جلوگیری از کرش و نمایش خطا
+                CustomMessageBox window = new CustomMessageBox("خطای غیرمنتظره", "خطایی رخ داد: " + ex.Message, false, CustomMessageBox.MessageType.Error);
+                OpenBlurWindow(window);
             }
         }
         private void RegisterBTN_Click(object sender, RoutedEventArgs e)
