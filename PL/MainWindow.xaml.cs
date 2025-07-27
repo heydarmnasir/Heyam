@@ -44,12 +44,12 @@ namespace PL
             // بررسی تم ذخیره‌شده و تنظیم مقدار چک‌باکس
             if (Heyam.Properties.Settings.Default.IsDarkMode)
             {
-                ThemeToggleButton.IsChecked = true;
+                //ThemeToggleButton.IsChecked = true;
                 ApplyDarkMode();
             }
             else
             {
-                ThemeToggleButton.IsChecked = false;
+                //ThemeToggleButton.IsChecked = false;
                 ApplyLightMode();
             }
 

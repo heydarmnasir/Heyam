@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
-using DevExpress.XtraRichEdit.API.Native;
 using System.Windows.Media.Effects;
 using BE.ViewModel;
 using BE;
@@ -32,14 +31,7 @@ namespace Heyam
             RefreshLegalBrief();
             LoadTemplates();
             _mainWindow = mainWindow;
-
-            // تغییر فونت و اندازه پیش‌فرض
-            RichEditBox.Document.DefaultCharacterProperties.FontName = "IRANSansWeb(FaNum)";
-            RichEditBox.Document.DefaultCharacterProperties.FontSize = 10;
-
-            SetDefaultMargins();
-            SetRightToLeftText();
-
+            
             #region Fill ClientName & CaseNumber Field ComboBox
             var clients = cbll.GetAllClients(); // از BLL           
             SelectClientNameCB.ItemsSource = clients;
@@ -51,74 +43,7 @@ namespace Heyam
             #endregion
         }
         SmsIr smsIr = new SmsIr("XwrI6iBRvxaWJ4AVcqaQddyRF5Ux3iHesb7XuQGbcSVag4Ut");
-
-        #region RichTextBoxStyle
-        private void SetDefaultMargins()
-        {
-            // گرفتن اولین سکشن سند
-            DevExpress.XtraRichEdit.API.Native.Section firstSection = RichEditBox.Document.Sections[0];
-
-            // تنظیم Margin به حالت Narrow (مقدار: 0.5 اینچ = 36 pt)
-            firstSection.Margins.Left = 36;   // چپ
-            firstSection.Margins.Right = 36;  // راست
-            firstSection.Margins.Top = 36;    // بالا
-            firstSection.Margins.Bottom = 36; // پایین
-        }
-        private void SetRightToLeftText()
-        {            
-            // ✅ تنظیم جهت کلی سند به راست به چپ
-            //RichEditBox.FlowDirection = FlowDirection.RightToLeft;
-
-            // ✅ گرفتن اولین سکشن از سند و تنظیم حاشیه Narrow
-            DevExpress.XtraRichEdit.API.Native.Section firstSection = RichEditBox.Document.Sections[0];
-            firstSection.Margins.Left = 36;
-            firstSection.Margins.Right = 36;
-            firstSection.Margins.Top = 36;
-            firstSection.Margins.Bottom = 36;
-
-            // ✅ تنظیم چیدمان پاراگراف به راست‌چین
-            DevExpress.XtraRichEdit.API.Native.Paragraph firstParagraph = RichEditBox.Document.Paragraphs[0];
-            firstParagraph.Alignment = ParagraphAlignment.Left;
-            firstParagraph.RightToLeft = true;
-
-            // ✅ تغییر جهت پیش‌فرض سند به راست‌چین
-            RichEditBox.Document.DefaultParagraphProperties.Alignment = ParagraphAlignment.Left;
-            RichEditBox.Document.DefaultParagraphProperties.RightToLeft = true;
-        }
-        private void PopupSetDefaultMargins()
-        {
-            // گرفتن اولین سکشن سند
-            DevExpress.XtraRichEdit.API.Native.Section firstSection = PopupRichEditBox.Document.Sections[0];
-
-            // تنظیم Margin به حالت Narrow (مقدار: 0.5 اینچ = 36 pt)
-            firstSection.Margins.Left = 36;   // چپ
-            firstSection.Margins.Right = 36;  // راست
-            firstSection.Margins.Top = 36;    // بالا
-            firstSection.Margins.Bottom = 36; // پایین
-        }
-        private void PopupSetRightToLeftText()
-        {
-            // ✅ تنظیم جهت کلی سند به راست به چپ
-            //RichEditBox.FlowDirection = FlowDirection.RightToLeft;
-
-            // ✅ گرفتن اولین سکشن از سند و تنظیم حاشیه Narrow
-            DevExpress.XtraRichEdit.API.Native.Section firstSection = PopupRichEditBox.Document.Sections[0];
-            firstSection.Margins.Left = 36;
-            firstSection.Margins.Right = 36;
-            firstSection.Margins.Top = 36;
-            firstSection.Margins.Bottom = 36;
-
-            // ✅ تنظیم چیدمان پاراگراف به راست‌چین
-            DevExpress.XtraRichEdit.API.Native.Paragraph firstParagraph = PopupRichEditBox.Document.Paragraphs[0];
-            firstParagraph.Alignment = ParagraphAlignment.Left;
-            firstParagraph.RightToLeft = true;
-
-            // ✅ تغییر جهت پیش‌فرض سند به راست‌چین
-            PopupRichEditBox.Document.DefaultParagraphProperties.Alignment = ParagraphAlignment.Left;
-            PopupRichEditBox.Document.DefaultParagraphProperties.RightToLeft = true;
-        }
-        #endregion
-
+   
         #region Dashboard
         private Button lastSelectedButton;
         private void TanzimContract_Click(object sender, RoutedEventArgs e)
@@ -162,15 +87,7 @@ namespace Heyam
             LegalBriefDGV.Visibility = Visibility.Collapsed;
             SearchLegalBriefBox.Visibility = Visibility.Collapsed;
             SearchLegalBriefPlaceholderText.Visibility = Visibility.Collapsed;          
-            RichEditBox.Text = string.Empty;
-            TemplateCB.SelectedValue = "";        
-       
-            // تغییر فونت و اندازه پیش‌فرض
-            RichEditBox.Document.DefaultCharacterProperties.FontName = "IRANSansWeb(FaNum)";
-            RichEditBox.Document.DefaultCharacterProperties.FontSize = 10;
-
-            SetDefaultMargins();
-            SetRightToLeftText();
+            TemplateCB.SelectedValue = "";                      
         }      
         private void AdlIran_Click(object sender, RoutedEventArgs e)
         {
@@ -213,8 +130,6 @@ namespace Heyam
                     datePicker.SelectedDate = null;              
                 else if (child is System.Windows.Controls.CheckBox checkbox)
                     checkbox.IsChecked = false;
-
-                RichEditBox.Document.Text = "";
 
                 ClearControls(child); // فراخوانی بازگشتی
             }
@@ -639,16 +554,16 @@ namespace Heyam
         {
             if (TemplateCB.SelectedItem is BriefTemplate selectedTemplate)
             {
-                RichEditBox.Document.BeginUpdate();
-                RichEditBox.Document.Text = selectedTemplate.Content;
-                RichEditBox.Document.EndUpdate();
+                //RichEditBox.Document.BeginUpdate();
+                //RichEditBox.Document.Text = selectedTemplate.Content;
+                //RichEditBox.Document.EndUpdate();
 
-                // تغییر فونت و اندازه پیش‌فرض
-                RichEditBox.Document.DefaultCharacterProperties.FontName = "IRANSansWeb(FaNum)";
-                RichEditBox.Document.DefaultCharacterProperties.FontSize = 10;
+                //// تغییر فونت و اندازه پیش‌فرض
+                //RichEditBox.Document.DefaultCharacterProperties.FontName = "IRANSansWeb(FaNum)";
+                //RichEditBox.Document.DefaultCharacterProperties.FontSize = 10;
 
-                SetDefaultMargins();
-                SetRightToLeftText();
+                //SetDefaultMargins();
+                //SetRightToLeftText();
             }
         }
         private void SearchLegalBriefBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -721,17 +636,17 @@ namespace Heyam
             {
                 LegalBriefDetailsPopup.Tag = legalbriefId;
                 var _legalbrief = legalBrief_bll.GetBriefById(legalbriefId);
-                PopupRichEditBox.Document.Text = _legalbrief.Content;
+                //PopupRichEditBox.Document.Text = _legalbrief.Content;
                 LegalBriefDetailsPopup.Visibility = Visibility.Visible;
                 MainGrid.Effect = new BlurEffect() { Radius = 5 };
                 LegalBriefGrid.Effect = new BlurEffect() { Radius = 5 };
 
-                // تغییر فونت و اندازه پیش‌فرض
-                PopupRichEditBox.Document.DefaultCharacterProperties.FontName = "IRANSansWeb(FaNum)";
-                PopupRichEditBox.Document.DefaultCharacterProperties.FontSize = 10;
+                //// تغییر فونت و اندازه پیش‌فرض
+                //PopupRichEditBox.Document.DefaultCharacterProperties.FontName = "IRANSansWeb(FaNum)";
+                //PopupRichEditBox.Document.DefaultCharacterProperties.FontSize = 10;
 
-                PopupSetDefaultMargins();
-                PopupSetRightToLeftText();
+                //PopupSetDefaultMargins();
+                //PopupSetRightToLeftText();
             }            
         }
         private void LegalBriefDetailsPopupCloseBTN_Click(object sender, RoutedEventArgs e)
@@ -743,8 +658,9 @@ namespace Heyam
         private void LegalBriefSubmitBTN_Click(object sender, RoutedEventArgs e)
         {
             // بررسی اینکه آیا قالب تکمیل شده است
-            if (string.IsNullOrWhiteSpace(SelectClientForLegalBriefCB.Text) || string.IsNullOrWhiteSpace(SelectCaseNumberForLegalBriefCB.Text) || string.IsNullOrWhiteSpace(TemplateCB.Text) || string.IsNullOrWhiteSpace(SetDateDForLegalBriefDP.Text) || string.IsNullOrWhiteSpace(RichEditBox.Document.Text))
+            if (string.IsNullOrWhiteSpace(SelectClientForLegalBriefCB.Text) || string.IsNullOrWhiteSpace(SelectCaseNumberForLegalBriefCB.Text) || string.IsNullOrWhiteSpace(TemplateCB.Text) || string.IsNullOrWhiteSpace(SetDateDForLegalBriefDP.Text))
             {
+                //string.IsNullOrWhiteSpace(RichEditBox.Document.Text)
                 ShowNotification("لطفاً تمام فیلدها را پر کنید", "warning");
                 return;
             }
@@ -763,7 +679,7 @@ namespace Heyam
                 CaseId = SelectCaseNumberForLegalBriefCB.SelectedValue as int?,
                 Title = TemplateCB.SelectedIndex,
                 SetDate = SetDateDForLegalBriefDP.SelectedDate.Value,
-                Content = RichEditBox.Document.Text,
+                //Content = RichEditBox.Document.Text,
                 IsDeliverySet = DeliveryCheckBox.IsChecked == true,
                 DeliveryDate = DeliveryCheckBox.IsChecked == true ? DeliveryDateDP.SelectedDate : null,
                 IsDeliveryDone = false,
@@ -785,7 +701,7 @@ namespace Heyam
                         var reminder = new Reminder
                         {
                             Title = $"یادآور لایحه برای {SelectClientForLegalBriefCB.Text}",
-                            Description = RichEditBox.Document.Text,
+                            //Description = RichEditBox.Document.Text,
                             ReminderDate = DeliveryDateDP.SelectedDate.Value,
                             UserId = user.Id,
                             LegalBriefId = legalbriefId

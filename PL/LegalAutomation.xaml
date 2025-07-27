@@ -254,7 +254,7 @@
             Text="جستجو براساس نام موکل یا عنوان لایحه ..."
             Foreground="Gray" FontWeight="Regular"                                         
             IsHitTestVisible="False" HorizontalAlignment="Right" Margin="0,0,402,11" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="218"/>
-            <dxre:RichEditControl x:Name="RichEditBox" VerticalContentAlignment="Top" FlowDirection="LeftToRight" CommandBarStyle="Ribbon" Margin="210,43,0,41"/>
+            <!--<dxre:RichEditControl x:Name="RichEditBox" VerticalContentAlignment="Top" FlowDirection="LeftToRight" CommandBarStyle="Ribbon" Margin="210,43,0,41"/>-->
             <Button x:Name="LegalBriefSubmitBTN" Content="ثبت لایحه حقوقی" Cursor="Hand" BorderBrush="DarkGreen" Background="ForestGreen" Foreground="White" Margin="261,644,0,0" Width="135" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Click="LegalBriefSubmitBTN_Click"/>
 
             <!-- جدول اطلاعات لایحه ها -->
@@ -298,7 +298,7 @@
             <Border Background="White" Padding="15" CornerRadius="10" BorderBrush="Black" BorderThickness="3" Width="930" Height="600">
                 <StackPanel>
                     <TextBlock Text="📜 متن لایحه" FontSize="18" FontWeight="Bold" Foreground="DarkBlue" Margin="0,0,0,10"/>
-                    <dxre:RichEditControl x:Name="PopupRichEditBox" ReadOnly="True" CommandBarStyle="Ribbon" FlowDirection="LeftToRight" Margin="0,0,0,40" Height="480"/>
+                    <!--<dxre:RichEditControl x:Name="PopupRichEditBox" ReadOnly="True" CommandBarStyle="Ribbon" FlowDirection="LeftToRight" Margin="0,0,0,40" Height="480"/>-->
                     <WrapPanel HorizontalAlignment="Right" Margin="0,11,0,0" Width="100">
                         <Button x:Name="LegalBriefDetailsPopupCloseBTN" Content="❌ بستن" Background="#1259D5" Foreground="White" Cursor="Hand" Margin="25 -50 0 0" Height="30" Click="LegalBriefDetailsPopupCloseBTN_Click"/>
                     </WrapPanel>

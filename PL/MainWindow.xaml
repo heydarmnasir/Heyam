@@ -146,14 +146,6 @@
             <TextBlock x:Name="UserNameText1" HorizontalAlignment="Left" Grid.Row="3" Text="{DynamicResource UserNameText}" FontFamily="pack://application:,,,/Resources/Fonts/#IRANSansWeb(FaNum)" FontSize="16" FontWeight="Bold" Margin="1,21,0,10" Width="72" Foreground="White" Grid.Column="3" TextAlignment="Right"/>
             <Image Source="/Resources/Images/Reminders.png" Margin="41,6,13,18" Grid.Column="3" Grid.Row="4" />
             <Image Source="/Resources/Images/ClosedCases.png" Margin="79,24,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Grid.RowSpan="2" Grid.Column="5" Height="55" Grid.ColumnSpan="2" Width="55"/>
-            <dxe:ToggleSwitch x:Name="ThemeToggleButton" Cursor="Hand"
-                         Width="95" Grid.RowSpan="2" Grid.ColumnSpan="3" Height="60" Margin="51,0,0,0"
-                         Content="🌞 | 🌙"
-                         Foreground="White"
-                         Checked="ThemeToggleButton_Checked"
-                         Unchecked="ThemeToggleButton_Unchecked"
-                         ToolTip="تغییر بین حالت روشن و تاریک"
-                         HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <TextBlock x:Name="ScreenModeText" Text="🌞" FontSize="16" Foreground="Yellow" Margin="66,19,0,19" Grid.RowSpan="2"/>
         </Grid>
     </Border>
