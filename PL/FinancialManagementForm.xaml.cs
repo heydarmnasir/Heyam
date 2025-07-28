@@ -339,7 +339,7 @@ namespace Heyam
                 {
                     string fileName = Path.GetFileName(path);
 
-                    if (!attachments.Any(a => a.FilePath == path)) // FilePath فعلاً مسیر موقت
+                    if (!attachments.Any(a => a.FileName == fileName && a.FilePath == path)) // FilePath فعلاً مسیر موقت
                     {
                         attachments.Add(new PaymentAttachment
                         {
@@ -574,9 +574,12 @@ namespace Heyam
             }
             foreach (var attachment in attachments)
             {
+                string clientName = SelectClientNameCB.Text.Trim(); // یا هر فیلدی که نمایش نام موکل را دارد
+                string paymentStatus = PaymentStatusCB.Text.Trim();
+
                 string documentsPath = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                    "Heyam", "PaymentAttachments");
+                    "Heyam", "PaymentAttachments", clientName, paymentStatus);
 
                 if (!Directory.Exists(documentsPath))
                     Directory.CreateDirectory(documentsPath);

@@ -14,6 +14,39 @@
         Background="{DynamicResource BackgroundBrush}"
         Foreground="{DynamicResource ForegroundBrush}"
         Title="MainWindow" Height="664" Width="1152">
+
+    <Window.Resources>
+        <Style x:Key="SwitchToggleStyle" TargetType="ToggleButton">
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Border x:Name="SwitchBorder"
+                            CornerRadius="15"
+                            Background="LightGray"
+                            BorderBrush="Gray"
+                            BorderThickness="1"/>
+                            <Ellipse x:Name="SwitchKnob"
+                             Width="26" Height="26"
+                             Fill="White"
+                             Margin="2"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="SwitchBorder" Property="Background" Value="DodgerBlue"/>
+                                <Setter TargetName="SwitchKnob" Property="HorizontalAlignment" Value="Right"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Border x:Name="border" BorderBrush="#2A2929" BorderThickness="10" CornerRadius="5">
         <Grid x:Name="maingrid" Background="{DynamicResource BackgroundBrush}">
             <Grid.ColumnDefinitions>
@@ -147,6 +180,11 @@
             <Image Source="/Resources/Images/Reminders.png" Margin="41,6,13,18" Grid.Column="3" Grid.Row="4" />
             <Image Source="/Resources/Images/ClosedCases.png" Margin="79,24,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Grid.RowSpan="2" Grid.Column="5" Height="55" Grid.ColumnSpan="2" Width="55"/>
             <TextBlock x:Name="ScreenModeText" Text="🌞" FontSize="16" Foreground="Yellow" Margin="66,19,0,19" Grid.RowSpan="2"/>
+            <ToggleButton x:Name="ThemeToggle"
+              Style="{StaticResource SwitchToggleStyle}"
+              IsChecked="False" Cursor="Hand"
+              Checked="ThemeToggle_Checked"
+              Unchecked="ThemeToggle_Unchecked" Margin="7,15,28,15" Grid.RowSpan="2" Grid.Column="2"/>
         </Grid>
     </Border>
 </Window>

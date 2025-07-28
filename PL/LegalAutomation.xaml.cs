@@ -513,6 +513,102 @@ namespace Heyam
         #endregion
 
         #region LegalBrief
+        private void GenerateLegalBrief()
+        {
+            // Create FlowDocument
+            FlowDocument doc = new FlowDocument
+            {
+                PagePadding = new Thickness(20),
+                ColumnWidth = 800,
+                FontFamily = new FontFamily("Sahel"),
+                FontSize = 12,
+                TextAlignment = TextAlignment.Right,
+            };
+
+            // ایجاد Border به عنوان حاشیه صفحه
+            Border pageBorder = new Border
+            {
+                BorderBrush = Brushes.Black,
+                BorderThickness = new Thickness(2),
+                CornerRadius = new CornerRadius(10),
+                Padding = new Thickness(20),
+                Margin = new Thickness(0),
+                Child = new StackPanel
+                {
+                    Children =
+                    {
+                        new TextBlock
+                        {
+                            Text = "\t\t\t\tبسمه تعالی\t\t\t⚖ لایحه",
+                            FontSize = 18,
+                            FontWeight = FontWeights.Bold,
+                            TextAlignment = TextAlignment.Center
+                        },
+                        new TextBlock
+                        {
+                            Text = LegalBriefContentTB.Text,
+                            TextAlignment = TextAlignment.Justify,
+                            Margin = new Thickness(0, 5, 0, 0),
+                            TextWrapping = TextWrapping.Wrap,
+                        }
+                    }
+                }
+            };
+
+            // افزودن Border به FlowDocument
+            doc.Blocks.Add(new BlockUIContainer(pageBorder));
+
+            // Assign Document to Viewer
+            ContractPreview.Document = doc;
+        }
+        private void GeneratePopupLegalBrief()
+        {
+            // Create FlowDocument
+            FlowDocument doc = new FlowDocument
+            {
+                PagePadding = new Thickness(20),
+                ColumnWidth = 800,
+                FontFamily = new FontFamily("Sahel"),
+                FontSize = 12,
+                TextAlignment = TextAlignment.Right,
+            };
+
+            // ایجاد Border به عنوان حاشیه صفحه
+            Border pageBorder = new Border
+            {
+                BorderBrush = Brushes.Black,
+                BorderThickness = new Thickness(2),
+                CornerRadius = new CornerRadius(10),
+                Padding = new Thickness(20),
+                Margin = new Thickness(0),
+                Child = new StackPanel
+                {
+                    Children =
+                    {
+                        new TextBlock
+                        {
+                            Text = "\t\t\t\tبسمه تعالی\t\t\t⚖ لایحه",
+                            FontSize = 18,
+                            FontWeight = FontWeights.Bold,
+                            TextAlignment = TextAlignment.Center
+                        },
+                        new TextBlock
+                        {
+                            Text = PopupLegalBriefContentTB.Text,
+                            TextAlignment = TextAlignment.Justify,
+                            Margin = new Thickness(0, 5, 0, 0),
+                            TextWrapping = TextWrapping.Wrap,
+                        }
+                    }
+                }
+            };
+
+            // افزودن Border به FlowDocument
+            doc.Blocks.Add(new BlockUIContainer(pageBorder));
+
+            // Assign Document to Viewer
+            ContractPreview.Document = doc;
+        }
         private List<BriefTemplate> templates;
         private void SelectClientForLegalBriefCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -554,16 +650,8 @@ namespace Heyam
         {
             if (TemplateCB.SelectedItem is BriefTemplate selectedTemplate)
             {
-                //RichEditBox.Document.BeginUpdate();
-                //RichEditBox.Document.Text = selectedTemplate.Content;
-                //RichEditBox.Document.EndUpdate();
-
-                //// تغییر فونت و اندازه پیش‌فرض
-                //RichEditBox.Document.DefaultCharacterProperties.FontName = "IRANSansWeb(FaNum)";
-                //RichEditBox.Document.DefaultCharacterProperties.FontSize = 10;
-
-                //SetDefaultMargins();
-                //SetRightToLeftText();
+                LegalBriefContentTB.Text = selectedTemplate.Content;
+                LegalBriefContentTB.IsReadOnly = false;
             }
         }
         private void SearchLegalBriefBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -605,6 +693,7 @@ namespace Heyam
                 RegBriefPanel.Visibility = Visibility.Collapsed;
                 DeliveryCheckBox.Visibility = Visibility.Collapsed;
                 DeliveryDateDP.Visibility = Visibility.Collapsed;
+                ExportLegalBriefBTN.Visibility = Visibility.Collapsed;    
                 ListLayeheDynamicText.Visibility = Visibility.Visible;
             }
             else
@@ -617,6 +706,7 @@ namespace Heyam
                 RegBriefPanel.Visibility = Visibility.Visible;
                 DeliveryCheckBox.Visibility = Visibility.Visible;
                 DeliveryDateDP.Visibility = Visibility.Visible;
+                ExportLegalBriefBTN.Visibility = Visibility.Visible;
                 ListLayeheDynamicText.Visibility = Visibility.Collapsed;
             }
         }
@@ -636,17 +726,10 @@ namespace Heyam
             {
                 LegalBriefDetailsPopup.Tag = legalbriefId;
                 var _legalbrief = legalBrief_bll.GetBriefById(legalbriefId);
-                //PopupRichEditBox.Document.Text = _legalbrief.Content;
+                PopupLegalBriefContentTB.Text = _legalbrief.Content;
                 LegalBriefDetailsPopup.Visibility = Visibility.Visible;
                 MainGrid.Effect = new BlurEffect() { Radius = 5 };
                 LegalBriefGrid.Effect = new BlurEffect() { Radius = 5 };
-
-                //// تغییر فونت و اندازه پیش‌فرض
-                //PopupRichEditBox.Document.DefaultCharacterProperties.FontName = "IRANSansWeb(FaNum)";
-                //PopupRichEditBox.Document.DefaultCharacterProperties.FontSize = 10;
-
-                //PopupSetDefaultMargins();
-                //PopupSetRightToLeftText();
             }            
         }
         private void LegalBriefDetailsPopupCloseBTN_Click(object sender, RoutedEventArgs e)
@@ -658,9 +741,8 @@ namespace Heyam
         private void LegalBriefSubmitBTN_Click(object sender, RoutedEventArgs e)
         {
             // بررسی اینکه آیا قالب تکمیل شده است
-            if (string.IsNullOrWhiteSpace(SelectClientForLegalBriefCB.Text) || string.IsNullOrWhiteSpace(SelectCaseNumberForLegalBriefCB.Text) || string.IsNullOrWhiteSpace(TemplateCB.Text) || string.IsNullOrWhiteSpace(SetDateDForLegalBriefDP.Text))
-            {
-                //string.IsNullOrWhiteSpace(RichEditBox.Document.Text)
+            if (string.IsNullOrWhiteSpace(SelectClientForLegalBriefCB.Text) || string.IsNullOrWhiteSpace(SelectCaseNumberForLegalBriefCB.Text) || string.IsNullOrWhiteSpace(TemplateCB.Text) || string.IsNullOrWhiteSpace(SetDateDForLegalBriefDP.Text) || string.IsNullOrWhiteSpace(LegalBriefContentTB.Text))
+            {                
                 ShowNotification("لطفاً تمام فیلدها را پر کنید", "warning");
                 return;
             }
@@ -679,7 +761,7 @@ namespace Heyam
                 CaseId = SelectCaseNumberForLegalBriefCB.SelectedValue as int?,
                 Title = TemplateCB.SelectedIndex,
                 SetDate = SetDateDForLegalBriefDP.SelectedDate.Value,
-                //Content = RichEditBox.Document.Text,
+                Content = LegalBriefContentTB.Text,
                 IsDeliverySet = DeliveryCheckBox.IsChecked == true,
                 DeliveryDate = DeliveryCheckBox.IsChecked == true ? DeliveryDateDP.SelectedDate : null,
                 IsDeliveryDone = false,
@@ -714,12 +796,35 @@ namespace Heyam
                     ClearControls(RegBriefPanel);
                     DeliveryCheckBox.IsChecked = false;
                     DeliveryDateDP.SelectedDate = null;
+                    LegalBriefContentTB.IsReadOnly = true;
                 }
                 else
                 {
                     ShowNotification("خطا در ثبت لایحه!", "error");
                 }            
             }           
+        }
+        private void ExportLegalBriefBTN_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                GenerateLegalBrief();
+
+                IDocumentPaginatorSource document = ContractPreview.Document;
+                printDialog.PrintDocument(document.DocumentPaginator, "لایحه");
+            }
+        }
+        private void PopupExportLegalBriefBTN_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                GeneratePopupLegalBrief();
+
+                IDocumentPaginatorSource document = ContractPreview.Document;
+                printDialog.PrintDocument(document.DocumentPaginator, "لایحه");
+            }
         }
         #endregion
 

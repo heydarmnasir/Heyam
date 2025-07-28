@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:hc="https://handyorg.github.io/handycontrol"
-        xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
         xmlns:local="clr-namespace:Heyam"
         mc:Ignorable="d"
         ResizeMode="NoResize"
@@ -176,28 +175,29 @@
             </Border>
         </Grid>
 
-
         <!--تنظیم لایحه حقوقی-->
         <Grid x:Name="LegalBriefGrid" Visibility="Collapsed">
             <Grid x:Name="RegBriefPanel">
-            <WrapPanel Margin="225,0,0,642">
-                <TextBlock Text="موکل:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
-                <ComboBox x:Name="SelectClientForLegalBriefCB" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175" SelectionChanged="SelectClientForLegalBriefCB_SelectionChanged"/>
-            </WrapPanel>
-            <WrapPanel Margin="440,0,0,642">
-                <TextBlock Text="انتخاب پرونده:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
-                <ComboBox x:Name="SelectCaseNumberForLegalBriefCB" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175"/>
-            </WrapPanel>
+                <WrapPanel Margin="225,0,0,642">
+                    <TextBlock Text="موکل:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
+                    <ComboBox x:Name="SelectClientForLegalBriefCB" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175" SelectionChanged="SelectClientForLegalBriefCB_SelectionChanged"/>
+                </WrapPanel>
+                <WrapPanel Margin="440,0,0,642">
+                    <TextBlock Text="انتخاب پرونده:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
+                    <ComboBox x:Name="SelectCaseNumberForLegalBriefCB" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175"/>
+                </WrapPanel>
 
-            <WrapPanel Margin="700,0,0,642">
-                <TextBlock Text="انتخاب لایحه:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
-                <ComboBox x:Name="TemplateCB" DisplayMemberPath="Title" SelectedValue="Id" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175"  SelectionChanged="SelectLayeheCB_SelectionChanged"/>
-            </WrapPanel>
+                <WrapPanel Margin="700,0,0,642">
+                    <TextBlock Text="انتخاب لایحه:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
+                    <ComboBox x:Name="TemplateCB" DisplayMemberPath="Title" SelectedValue="Id" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175"  SelectionChanged="SelectLayeheCB_SelectionChanged"/>
+                </WrapPanel>
 
-            <WrapPanel Margin="950,0,0,642">
-                <TextBlock Text="تاریخ تنظیم:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
-                <hc:PersianDatePicker x:Name="SetDateDForLegalBriefDP" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175"/>
-            </WrapPanel>
+                <WrapPanel Margin="950,0,0,642">
+                    <TextBlock Text="تاریخ تنظیم:" Foreground="#1259D5" FontSize="12" FontWeight="UltraBold" Margin="0 7 0 0"/>
+                    <hc:PersianDatePicker x:Name="SetDateDForLegalBriefDP" BorderBrush="Gray" Margin="5 5 0 0" Cursor="Hand" Width="175"/>
+                </WrapPanel>
+                <TextBlock Text="قالب لایحه:" Foreground="White" FontSize="16" FontWeight="SemiBold" Margin="226,47,894,606"/>
+                <TextBox Name="LegalBriefContentTB" IsReadOnly="True" AcceptsReturn="True" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" TextAlignment="Justify" TextWrapping="Wrap" Background="#F8F8F8" Margin="225,79,0,44"/>
             </Grid>
 
             <TextBlock x:Name="ListLayeheDynamicText" Text="🧾 لیست لوایح" Visibility="Collapsed" Foreground="#34495E" FontSize="16" FontWeight="UltraBold" Margin="230 7 0 0"/>
@@ -206,8 +206,7 @@
             Content="تاریخ ارجاع دارد؟"
             FontSize="12"
             FontWeight="Bold"
-            Foreground="#1051E7"
-            Width="166" Height="33" Margin="0,644,200,0"
+            Foreground="#1051E7" Height="33" Margin="389,644,717,3"
             Checked="DeliveryCheckBox_Checked"
             Unchecked="DeliveryCheckBox_Unchecked">
                 <CheckBox.Style>
@@ -246,7 +245,7 @@
                     </Style>
                 </CheckBox.Style>
             </CheckBox>
-            <hc:PersianDatePicker x:Name="DeliveryDateDP" IsEnabled="False" Margin="546,644,450,5"/>
+            <hc:PersianDatePicker x:Name="DeliveryDateDP" IsEnabled="False" Margin="513,643,483,6"/>
 
             <Button x:Name="ShowLegalBriefsListBTN" Content="نمایش/پنهان‌سازی لیست لایحه ها" Height="30" Width="200" Margin="0,0,120,6" Background="#03A9F4" Foreground="White" HorizontalAlignment="Right" Cursor="Hand" Click="ShowLegalBriefsListBTN_Click" VerticalAlignment="Bottom"/>
             <hc:SearchBar x:Name="SearchLegalBriefBox" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,0,350,8" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="280" TextChanged="SearchLegalBriefBox_TextChanged"/>
@@ -254,8 +253,13 @@
             Text="جستجو براساس نام موکل یا عنوان لایحه ..."
             Foreground="Gray" FontWeight="Regular"                                         
             IsHitTestVisible="False" HorizontalAlignment="Right" Margin="0,0,402,11" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="218"/>
-            <!--<dxre:RichEditControl x:Name="RichEditBox" VerticalContentAlignment="Top" FlowDirection="LeftToRight" CommandBarStyle="Ribbon" Margin="210,43,0,41"/>-->
-            <Button x:Name="LegalBriefSubmitBTN" Content="ثبت لایحه حقوقی" Cursor="Hand" BorderBrush="DarkGreen" Background="ForestGreen" Foreground="White" Margin="261,644,0,0" Width="135" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Click="LegalBriefSubmitBTN_Click"/>
+            <Button x:Name="ExportLegalBriefBTN" Cursor="Hand" Background="#EC4949" Foreground="White"  Width="88" Height="30" Click="ExportLegalBriefBTN_Click" HorizontalAlignment="Left" Margin="786,644,0,0" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="استخراج" VerticalAlignment="Center" FontSize="11.5" Margin="-2,0,5,0"/>
+                    <Image Source="Resources/Images/PDF.png" Width="23" Height="18"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="LegalBriefSubmitBTN" Content="ثبت لایحه حقوقی" Cursor="Hand" BorderBrush="DarkGreen" Background="ForestGreen" Foreground="White" Margin="232,644,0,0" Width="135" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Click="LegalBriefSubmitBTN_Click"/>
 
             <!-- جدول اطلاعات لایحه ها -->
             <DataGrid x:Name="LegalBriefDGV" AutoGenerateColumns="False" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" CanUserResizeColumns="True" Visibility="Collapsed" Margin="210,43,0,41">
@@ -298,9 +302,15 @@
             <Border Background="White" Padding="15" CornerRadius="10" BorderBrush="Black" BorderThickness="3" Width="930" Height="600">
                 <StackPanel>
                     <TextBlock Text="📜 متن لایحه" FontSize="18" FontWeight="Bold" Foreground="DarkBlue" Margin="0,0,0,10"/>
-                    <!--<dxre:RichEditControl x:Name="PopupRichEditBox" ReadOnly="True" CommandBarStyle="Ribbon" FlowDirection="LeftToRight" Margin="0,0,0,40" Height="480"/>-->
-                    <WrapPanel HorizontalAlignment="Right" Margin="0,11,0,0" Width="100">
-                        <Button x:Name="LegalBriefDetailsPopupCloseBTN" Content="❌ بستن" Background="#1259D5" Foreground="White" Cursor="Hand" Margin="25 -50 0 0" Height="30" Click="LegalBriefDetailsPopupCloseBTN_Click"/>
+                    <TextBox Name="PopupLegalBriefContentTB" IsReadOnly="True" AcceptsReturn="True" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" TextAlignment="Justify" TextWrapping="Wrap" Background="#F8F8F8" Margin="0,0,0,40" Height="470" Width="878"/>
+                    <WrapPanel HorizontalAlignment="Right" Margin="0,-30,0,0" Width="185" Height="37">
+                        <Button x:Name="PopupExportLegalBriefBTN" Cursor="Hand" Background="#EC4949" Foreground="White" Width="88" Height="35" Click="PopupExportLegalBriefBTN_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="استخراج" VerticalAlignment="Center" FontSize="11.5" Margin="-2,0,5,0"/>
+                                <Image Source="Resources/Images/PDF.png" Width="23" Height="18"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="LegalBriefDetailsPopupCloseBTN" Content="❌ بستن" Background="#1259D5" Foreground="White" Cursor="Hand" Margin="25 0 0 0" Height="30" Click="LegalBriefDetailsPopupCloseBTN_Click"/>
                     </WrapPanel>
                 </StackPanel>
             </Border>

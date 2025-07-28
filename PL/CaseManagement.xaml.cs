@@ -251,7 +251,7 @@ namespace Heyam
                 {
                     string fileName = Path.GetFileName(path);
 
-                    if (!Caseattachments.Any(a => a.FilePath == path)) // FilePath فعلاً مسیر موقت
+                    if (!Caseattachments.Any(a => a.FileName == fileName && a.FilePath == path))
                     {
                         Caseattachments.Add(new CaseAttachment
                         {
@@ -475,9 +475,9 @@ namespace Heyam
                 {
                     string fileName = Path.GetFileName(path);
 
-                    if (!Caseattachments.Any(a => a.FilePath == path)) // FilePath فعلاً مسیر موقت
+                    if (!Existattachments.Any(a => a.FileName == fileName && a.FilePath == path))
                     {
-                        Caseattachments.Add(new CaseAttachment
+                        Existattachments.Add(new CaseAttachment
                         {
                             FileName = fileName,
                             FilePath = path, // ⛔ فعلاً فایل رو جابجا نکن، فقط آدرس موقتی نگه دار
@@ -537,11 +537,15 @@ namespace Heyam
                 }                
                 try
                 {
+                    // دریافت نام موکل و شماره پرونده
+                    string clientName = SelectClientNameCB.Text.Trim(); // یا هر فیلدی که نمایش نام موکل را دارد
+                    string caseNumber = CaseNumberTB.Text.Trim();
+
                     foreach (var attachment in Caseattachments)
                     {
                         string documentsPath = Path.Combine(
                             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                            "Heyam", "CaseAttachments");
+                            "Heyam", "CaseAttachments", clientName, caseNumber);
 
                         if (!Directory.Exists(documentsPath))
                             Directory.CreateDirectory(documentsPath);
@@ -636,13 +640,12 @@ namespace Heyam
                 ShowNotification("اطلاعات ضروری را وارد کنید!", "error");
             }
             else
-            {
-
-                foreach (var attachment in Caseattachments)
+            {             
+                foreach (var attachment in Existattachments)
                 {
                     string documentsPath = Path.Combine(
                         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                        "Heyam", "CaseAttachments");
+                        "Heyam", "CaseAttachments", _case.Client.FullName, _case.CaseNumber);
 
                     if (!Directory.Exists(documentsPath))
                         Directory.CreateDirectory(documentsPath);
@@ -654,7 +657,6 @@ namespace Heyam
                     {
                         File.Copy(attachment.FilePath, targetPath, true);
                     }
-
                     attachment.FilePath = targetPath; // آدرس جدید فایل رو ست کن که ذخیره بشه
                 }
 
@@ -668,7 +670,7 @@ namespace Heyam
                                     ? ClosingDatePopupDP.Text
                                     : null;
                 // افزودن پیوست‌های ویرایش‌شده
-                _case.CaseAttachments = Caseattachments;
+                _case.CaseAttachments = Existattachments;
                 bool result = case_bll.UpdateCase(_case, deletedAttachments);
                 ShowNotification($"ویرایش اطلاعات با موفقیت انجام شد", "success");
                 RefreshCases();
@@ -798,7 +800,7 @@ namespace Heyam
                 {
                     string fileName = Path.GetFileName(path);
 
-                    if (!correspondenceattachments.Any(a => a.FilePath == path)) // FilePath فعلاً مسیر موقت
+                    if (!correspondenceattachments.Any(a => a.FileName == fileName && a.FilePath == path)) // FilePath فعلاً مسیر موقت
                     {
                         correspondenceattachments.Add(new CorrespondenceAttachment
                         {
@@ -937,9 +939,9 @@ namespace Heyam
                 {
                     string fileName = Path.GetFileName(path);
 
-                    if (!correspondenceattachments.Any(a => a.FilePath == path)) // FilePath فعلاً مسیر موقت
+                    if (!Existcorrespondenceattachments.Any(a => a.FilePath == path)) // FilePath فعلاً مسیر موقت
                     {
-                        correspondenceattachments.Add(new CorrespondenceAttachment
+                        Existcorrespondenceattachments.Add(new CorrespondenceAttachment
                         {
                             FileName = fileName,
                             FilePath = path, // ⛔ فعلاً فایل رو جابجا نکن، فقط آدرس موقتی نگه دار
@@ -1062,9 +1064,13 @@ namespace Heyam
 
                     foreach (var attachment in correspondenceattachments)
                     {
+                        // دریافت نام موکل و شماره پرونده
+                        string CaseNumber = SelectCaseCB.Text.Trim(); // یا هر فیلدی که نمایش نام موکل را دارد
+                        string Title = CorrespondenceTitleTB.Text.Trim();
+
                         string documentsPath = Path.Combine(
                             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                            "Heyam", "CorrespondenceAttachments");
+                            "Heyam", "CorrespondenceAttachments", CaseNumber, Title);
 
                         if (!Directory.Exists(documentsPath))
                             Directory.CreateDirectory(documentsPath);
@@ -1185,7 +1191,7 @@ namespace Heyam
             {
                 string documentsPath = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                    "Heyam", "CorrespondenceAttachments");
+                    "Heyam", "CorrespondenceAttachments", _correpondence.Case.CaseNumber, _correpondence.Title);
 
                 if (!Directory.Exists(documentsPath))
                     Directory.CreateDirectory(documentsPath);
@@ -1209,7 +1215,7 @@ namespace Heyam
             _correpondence.CorrespondenceDescription = CorrespondenceDescriptionPopupTB.Text;
             _correpondence.Status = CorrespondenceStatusPopupCB.SelectedIndex;
             // افزودن پیوست‌های ویرایش‌شده
-            _correpondence.CorrespondenceAttachments = correspondenceattachments;
+            _correpondence.CorrespondenceAttachments = Existcorrespondenceattachments;
             bool result = correspondence_BLL.UpdateCorrespondence(_correpondence, deletedcorrespondenceAttachments);
             ShowNotification($"ویرایش اطلاعات با موفقیت انجام شد", "success");
             RefreshCorrespondence();

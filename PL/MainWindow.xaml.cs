@@ -44,12 +44,12 @@ namespace PL
             // بررسی تم ذخیره‌شده و تنظیم مقدار چک‌باکس
             if (Heyam.Properties.Settings.Default.IsDarkMode)
             {
-                //ThemeToggleButton.IsChecked = true;
+                ThemeToggle.IsChecked = true;
                 ApplyDarkMode();
             }
             else
             {
-                //ThemeToggleButton.IsChecked = false;
+                ThemeToggle.IsChecked = false;
                 ApplyLightMode();
             }
 
@@ -326,7 +326,7 @@ namespace PL
         }
         #endregion
 
-        private void ThemeToggleButton_Checked(object sender, RoutedEventArgs e)
+        private void ThemeToggle_Checked(object sender, RoutedEventArgs e)
         {
             ApplyDarkMode();
             Heyam.Properties.Settings.Default.IsDarkMode = true;
@@ -335,7 +335,7 @@ namespace PL
             Calender.Background = new SolidColorBrush(Colors.Black);
             Calender.Foreground = new SolidColorBrush(Colors.White);           
         }
-        private void ThemeToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        private void ThemeToggle_Unchecked(object sender, RoutedEventArgs e)
         {
             ApplyLightMode();
             Heyam.Properties.Settings.Default.IsDarkMode = false;

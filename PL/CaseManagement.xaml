@@ -116,7 +116,7 @@
                             <WrapPanel Margin="0 5">
                                 <TextBlock Text="شماره پرونده:" VerticalAlignment="Center"/>
                                 <TextBox x:Name="CaseNumberTB" Width="175" BorderBrush="#9D9D9D" Margin="5"/>
-                                <TextBlock Text="شماره بایگانی پرونده:" VerticalAlignment="Center"/>
+                                <TextBlock Text="شماره بایگانی شعبه:" VerticalAlignment="Center"/>
                                 <TextBox x:Name="CaseArchiveNumberTB" Width="178" BorderBrush="#9D9D9D" Margin="5"/>
                             </WrapPanel>
                             <WrapPanel Margin="0 5">
