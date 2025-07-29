@@ -26,7 +26,7 @@ namespace DAL
             return db.LegalBriefs.Include("User").Include(lb => lb.Client).Include(lb => lb.Case)
                                       .FirstOrDefault(lb => lb.Id == id);
         }
-        // جستجو بر اساس عنوان یا نام موکل
+        // جستجو بر اساس شماره پرونده یا نام موکل
         public List<LegalBrief> Search(string searchTerm)
         {
             return db.LegalBriefs.Include("User").Include(lb => lb.Client).Include(lb => lb.Case)

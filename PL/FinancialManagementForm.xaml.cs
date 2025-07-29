@@ -807,7 +807,7 @@ namespace Heyam
             new Run("\t\t"+"شماره پرونده: ") { FontWeight = FontWeights.Bold, Foreground = (Brush)brushConverter.ConvertFromString("#1259D5")},
             new Run(fullPayment.Case.CaseNumber + "\t\t"),
             new Run("تاریخ صدور صورتحساب: ") { FontWeight = FontWeights.Bold, Foreground = (Brush)brushConverter.ConvertFromString("#1259D5") },
-            new Run($"{DateTime.Now.ToShortDateString()}\n"),
+            new Run($"{DateTime.Now.ToString("yyyy/MM/dd")}\n"),
             new Run("\t\t"+"موضوع پرونده: ") { FontWeight = FontWeights.Bold, Foreground = (Brush)brushConverter.ConvertFromString("#1259D5") },
             new Run(fullPayment.Case.CaseSubject)
         }
@@ -851,7 +851,7 @@ namespace Heyam
 
             // Data Row
             TableRowGroup dataGroup = new TableRowGroup();
-            dataGroup.Rows.Add(CreateServiceRow(serviceText, fullPayment.PaymentDate.ToShortShamsiDate(),string.Format("{0:N0} ريال",fullPayment.Amount.Value), fullPayment.PaymentType));
+            dataGroup.Rows.Add(CreateServiceRow(serviceText, fullPayment.PaymentDate.ToString("yyyy/MM/dd"),string.Format("{0:N0} ريال",fullPayment.Amount.Value), fullPayment.PaymentType));
             servicesTable.RowGroups.Add(dataGroup);
 
             mainContent.Blocks.Add(servicesTable);

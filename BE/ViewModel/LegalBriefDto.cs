@@ -47,6 +47,9 @@ namespace BE.ViewModel
                 if (Title == 8) return "دفاعیه در دعاوی کیفری";
                 if (Title == 9) return "درخواست استمهال (تمدید مهلت)";
                 if (Title == 10) return "درخواست اجرای حکم";
+                if (Title == 11) return "معرفی داور";
+                if (Title == 12) return "عدم حضور";
+                if (Title == 13) return "✍️ لایحه (سفارشی)";
                 return "نامشخص";
             }
         }

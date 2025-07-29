@@ -250,7 +250,7 @@
             <Button x:Name="ShowLegalBriefsListBTN" Content="نمایش/پنهان‌سازی لیست لایحه ها" Height="30" Width="200" Margin="0,0,120,6" Background="#03A9F4" Foreground="White" HorizontalAlignment="Right" Cursor="Hand" Click="ShowLegalBriefsListBTN_Click" VerticalAlignment="Bottom"/>
             <hc:SearchBar x:Name="SearchLegalBriefBox" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,0,350,8" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="280" TextChanged="SearchLegalBriefBox_TextChanged"/>
             <TextBlock x:Name="SearchLegalBriefPlaceholderText" Visibility="Collapsed"
-            Text="جستجو براساس نام موکل یا عنوان لایحه ..."
+            Text="جستجو براساس نام موکل یا شماره پرونده ..."
             Foreground="Gray" FontWeight="Regular"                                         
             IsHitTestVisible="False" HorizontalAlignment="Right" Margin="0,0,402,11" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="218"/>
             <Button x:Name="ExportLegalBriefBTN" Cursor="Hand" Background="#EC4949" Foreground="White"  Width="88" Height="30" Click="ExportLegalBriefBTN_Click" HorizontalAlignment="Left" Margin="786,644,0,0" VerticalAlignment="Top">
