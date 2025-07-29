@@ -348,8 +348,8 @@ namespace BE.ViewModel
 
         //یادداشت های شخصی 
         private string GetNotesDirectory(string lawName)
-        {
-            var folder = Path.Combine("D:\\Privet\\Projects\\Heyam\\PL\\Resources\\Laws_Articles\\ArticlePersonalNotes", lawName);
+        {       
+            var folder = Path.Combine("C:\\Program Files(x86)\\Heyamcompany\\Heyam\\PL\\Resources\\Laws_Articles\\ArticlePersonalNotes", lawName);
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
             return folder;

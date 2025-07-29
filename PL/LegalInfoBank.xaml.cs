@@ -341,11 +341,7 @@ namespace Heyam
             {         
                 AenLettersLB.Items.Clear(); // لیست رو پاک کن
                 string folderPath = $"C:\\Program Files(x86)\\Heyamcompany\\Heyam\\PL\\Resources\\Legal_Files\\AenLetters\\{lawFolderName}";
-                if (!Directory.Exists(folderPath))
-                {
-                    MessageBox.Show("پوشه پیدا نشد");
-                    return;
-                }
+             
                 var files = Directory.GetFiles(folderPath, "*.pdf");
                 foreach (var filePath in files)
                 {
