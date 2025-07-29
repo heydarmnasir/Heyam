@@ -13,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using BE.ViewModel;
-using static HandyControl.Themes.PresetManager;
 
 namespace Heyam
 {

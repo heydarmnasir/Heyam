@@ -38,7 +38,7 @@ namespace Heyam
             "شخصی", "پرونده‌ها", "جلسات", "ایده‌ها", "سایر"
         };      
         private readonly string _categoryFilePath =
-        System.IO.Path.Combine("C:\\Program Files(x86)\\Heyamcompany\\Heyam\\PL\\Resources\\NoteCategory", "categories.json");
+        System.IO.Path.Combine("C:\\Program Files (x86)\\Heyamcompany\\Heyam\\PL\\Resources\\NoteCategory", "categories.json");
 
         public ActivityReminderForm(MainWindow mainWindow)
         {
