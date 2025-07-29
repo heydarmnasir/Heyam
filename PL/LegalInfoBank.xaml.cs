@@ -238,7 +238,6 @@ namespace Heyam
         #region Law       
         private readonly List<string> _lawFilePaths = new List<string>
         {
-
             "C:\\Program Files (x86)\\Heyamcompany\\Heyam\\PL\\Resources\\Laws_Articles\\Asasi_Law.json",
             "C:\\Program Files (x86)\\Heyamcompany\\Heyam\\PL\\Resources\\Laws_Articles\\Madani_Law.json",
             "C:\\Program Files (x86)\\Heyamcompany\\Heyam\\PL\\Resources\\Laws_Articles\\AenDadrasiDadgahomomi&enghlab(Madani)_Law.json",
@@ -339,9 +338,9 @@ namespace Heyam
         private void LoadAenLetters(string lawFolderName)
         {
             if (AenLettersLB != null)
-            {
+            {         
                 AenLettersLB.Items.Clear(); // لیست رو پاک کن
-                string folderPath = $@"D:\Privet\Projects\Heyam\PL\Resources\Legal_Files\AenLetters\{lawFolderName}";
+                string folderPath = $"C:\\Program Files(x86)\\Heyamcompany\\Heyam\\PL\\Resources\\Legal_Files\\AenLetters\\{lawFolderName}";
                 if (!Directory.Exists(folderPath))
                 {
                     MessageBox.Show("پوشه پیدا نشد");
