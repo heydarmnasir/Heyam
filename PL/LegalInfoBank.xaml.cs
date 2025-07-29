@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using BE.ViewModel;
+using static HandyControl.Themes.PresetManager;
 
 namespace Heyam
 {
@@ -338,32 +339,28 @@ namespace Heyam
         private void LoadAenLetters(string lawFolderName)
         {
             if (AenLettersLB != null)
-            {         
-                AenLettersLB.Items.Clear(); // لیست رو پاک کن
-                string folderPath = $"C:\\Program Files(x86)\\Heyamcompany\\Heyam\\PL\\Resources\\Legal_Files\\AenLetters\\{lawFolderName}";
+            {          
+                AenLettersLB.Items.Clear();
+                string folderPath = $"C:\\Program Files (x86)\\Heyamcompany\\Heyam\\PL\\Resources\\Legal_Files\\AenLetters\\{lawFolderName}";
              
                 var files = Directory.GetFiles(folderPath, "*.pdf");
                 foreach (var filePath in files)
                 {
                     string fileName = System.IO.Path.GetFileName(filePath);
-
-                    // ایجاد Hyperlink
+                
                     var hyperlink = new Hyperlink
                     {
                         NavigateUri = new Uri(filePath),
                     };
                     hyperlink.Inlines.Add(fileName);
                     hyperlink.RequestNavigate += Hyperlink_RequestNavigate;
-
-                    // اضافه کردن به TextBlock
+                   
                     var textBlock = new TextBlock();
                     textBlock.Inlines.Add(hyperlink);
-
-                    // اضافه کردن به ListBoxItem
+             
                     var listBoxItem = new ListBoxItem();
                     listBoxItem.Content = textBlock;
-
-                    // اضافه کردن به ListBox
+                   
                     AenLettersLB.Items.Add(listBoxItem);
                 }
             }
