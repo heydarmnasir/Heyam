@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{3A0575EE-0E53-4005-ABEA-30112DC79392}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeyamLaw", "HeyamLaw\HeyamLaw.csproj", "{17572099-4330-4803-A1B0-F3ED35728CC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,12 @@ Global
 		{3A0575EE-0E53-4005-ABEA-30112DC79392}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A0575EE-0E53-4005-ABEA-30112DC79392}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A0575EE-0E53-4005-ABEA-30112DC79392}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17572099-4330-4803-A1B0-F3ED35728CC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17572099-4330-4803-A1B0-F3ED35728CC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17572099-4330-4803-A1B0-F3ED35728CC5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{17572099-4330-4803-A1B0-F3ED35728CC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17572099-4330-4803-A1B0-F3ED35728CC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17572099-4330-4803-A1B0-F3ED35728CC5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
